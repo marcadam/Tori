@@ -23,9 +23,19 @@ class ContainerViewController: UIViewController {
         }
     }
     var contentViewController: UIViewController! {
-        didSet {
+        didSet(oldContentViewController) {
             view.layoutIfNeeded()
+
+            if oldContentViewController != nil {
+                oldContentViewController.willMoveToParentViewController(nil)
+                oldContentViewController.view.removeFromSuperview()
+                oldContentViewController.didMoveToParentViewController(nil)
+            }
+
+            contentViewController.willMoveToParentViewController(self)
             contentView.addSubview(contentViewController.view)
+            contentViewController.didMoveToParentViewController(self)
+
             UIView.animateWithDuration(0.3) { () -> Void in
                 self.contentViewLeadingConstraint.constant = 0
                 self.view.layoutIfNeeded()
