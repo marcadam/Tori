@@ -20,10 +20,11 @@
                     <rect key="frame" x="12" y="12" width="296" height="120"/>
                     <string key="text">Some long description about this twitter user. Some long description about this twitter user. Some long description about this twitter user. Some long description about this twitter user. </string>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="b0x-ls-jy9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="1oF-jg-ikA"/>
                 <constraint firstItem="b0x-ls-jy9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="3F7-m9-7QJ"/>

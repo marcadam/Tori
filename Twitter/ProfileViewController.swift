@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var headerScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageControlBackingView: UIView!
 
     var user: User?
 
@@ -25,6 +26,8 @@ class ProfileViewController: UIViewController {
         if let profileBannerURL = user?.profileBannerURL {
             headerImage.setImageWithURL(NSURL(string: profileBannerURL)!)
         }
+
+        pageControlBackingView.layer.cornerRadius = pageControlBackingView.frame.size.height / 2
 
         let contentWidth = view.bounds.width * 2
         let contentHeight = headerScrollView.bounds.height

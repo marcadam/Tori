@@ -35,12 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             containerVC.menuViewController = menuNC
             containerVC.contentViewController = tweetsNC
 
-//            // Just for building the profile view
-//            let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-//            let profileNC = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
-//            Utils.configureDefaultNavigationBar(profileNC.navigationBar)
-//            containerVC.contentViewController = profileNC
-
+            // Just for building the profile view
+            let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+            let profileNC = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
+            Utils.configureDefaultNavigationBar(profileNC.navigationBar)
+            containerVC.contentViewController = profileNC
 
             window?.rootViewController = containerVC
         }

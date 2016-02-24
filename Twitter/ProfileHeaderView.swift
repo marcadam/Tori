@@ -20,7 +20,7 @@ class ProfileHeaderView: UIView {
         didSet {
             if let user = user {
                 nameLabel.text = user.name
-                screenNameLabel.text = user.screenName
+                screenNameLabel.text = "@\(user.screenName!)"
                 if let profileImageURL = user.profileImageURL {
                     profileImageView.setImageWithURL(NSURL(string: profileImageURL)!)
                 }
@@ -48,6 +48,8 @@ class ProfileHeaderView: UIView {
         // custom initialization logic
         profileImageView.layer.cornerRadius = 6.0
         profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderWidth = 3.0
     }
 
 }

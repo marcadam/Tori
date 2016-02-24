@@ -32,8 +32,18 @@
                                     <outlet property="delegate" destination="k7A-L1-3bV" id="H7d-VQ-mQC"/>
                                 </connections>
                             </scrollView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXg-Ih-PYd">
+                                <rect key="frame" x="140" y="196" width="40" height="20"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="9Vz-qq-aBk"/>
+                                    <constraint firstAttribute="height" constant="20" id="M1E-oa-39k"/>
+                                </constraints>
+                            </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="ckQ-1G-QRa">
-                                <rect key="frame" x="148.5" y="187" width="23" height="37"/>
+                                <rect key="frame" x="148" y="187" width="23" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="pageControlDidPage:" destination="k7A-L1-3bV" eventType="valueChanged" id="R1k-Oy-g2v"/>
                                 </connections>
@@ -48,7 +58,9 @@
                             <constraint firstAttribute="trailing" secondItem="e0u-90-sCV" secondAttribute="trailing" id="P5j-JW-fqL"/>
                             <constraint firstItem="e0u-90-sCV" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="Psr-ww-IHD"/>
                             <constraint firstAttribute="trailing" secondItem="CkB-fQ-SdM" secondAttribute="trailing" id="ge0-Wq-D33"/>
+                            <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerY" secondItem="QXg-Ih-PYd" secondAttribute="centerY" id="i2O-iw-S2f"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="bottom" secondItem="CkB-fQ-SdM" secondAttribute="bottom" id="jSy-tS-G4f"/>
+                            <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerX" secondItem="QXg-Ih-PYd" secondAttribute="centerX" id="yZP-Cs-RRc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="maG-tN-udw"/>
@@ -56,6 +68,7 @@
                         <outlet property="headerImage" destination="e0u-90-sCV" id="ZRr-DN-87Q"/>
                         <outlet property="headerScrollView" destination="CkB-fQ-SdM" id="b6p-Mn-23Q"/>
                         <outlet property="pageControl" destination="ckQ-1G-QRa" id="0by-gV-I7U"/>
+                        <outlet property="pageControlBackingView" destination="QXg-Ih-PYd" id="adW-11-2sZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaM-hM-QhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
