@@ -84,6 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49ADC2461C7E6FAB003BC437 /* Storyboards and Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				49DCEA1C1C75340200A2B24B /* Main.storyboard */,
+				49ADC2381C7CE61D003BC437 /* Container.storyboard */,
+				49ADC23A1C7CE637003BC437 /* Menu.storyboard */,
+				49ADC2421C7D3A41003BC437 /* Profile.storyboard */,
+				492D01F31C7D6471000AAF17 /* ProfileHeaderView.xib */,
+				492D01F71C7D7C00000AAF17 /* ProfileDescriptionView.xib */,
+			);
+			name = "Storyboards and Xibs";
+			path = Twitter;
+			sourceTree = "<group>";
+		};
 		49DCEA0C1C75340200A2B24B = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +105,7 @@
 				49DCEA311C75B68800A2B24B /* Models */,
 				49DCEA3B1C76EF3700A2B24B /* Views */,
 				49DCEA361C76A25400A2B24B /* View Controllers */,
+				49ADC2461C7E6FAB003BC437 /* Storyboards and Xibs */,
 				49DCEA171C75340200A2B24B /* Twitter */,
 				49DCEA2A1C75371D00A2B24B /* Supporting Files */,
 				49DCEA161C75340200A2B24B /* Products */,
@@ -111,12 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				49DCEA181C75340200A2B24B /* AppDelegate.swift */,
-				49DCEA1C1C75340200A2B24B /* Main.storyboard */,
-				49ADC2381C7CE61D003BC437 /* Container.storyboard */,
-				49ADC23A1C7CE637003BC437 /* Menu.storyboard */,
-				49ADC2421C7D3A41003BC437 /* Profile.storyboard */,
-				492D01F31C7D6471000AAF17 /* ProfileHeaderView.xib */,
-				492D01F71C7D7C00000AAF17 /* ProfileDescriptionView.xib */,
 				49DCEA1F1C75340200A2B24B /* Assets.xcassets */,
 				49DCEA211C75340200A2B24B /* LaunchScreen.storyboard */,
 				49DCEA241C75340200A2B24B /* Info.plist */,
