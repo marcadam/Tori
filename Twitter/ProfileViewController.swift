@@ -22,6 +22,9 @@ class ProfileViewController: UIViewController {
         // Should maybe use profile_background_color instead
         // And may want to use profile_text_color for font color
         headerImage.backgroundColor = Color.twitterBlue
+        if let profileBannerURL = user?.profileBannerURL {
+            headerImage.setImageWithURL(NSURL(string: profileBannerURL)!)
+        }
 
         let contentWidth = view.bounds.width * 2
         let contentHeight = headerScrollView.bounds.height
