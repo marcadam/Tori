@@ -11,11 +11,12 @@ import UIKit
 protocol TweetCellDelegate: class {
     func didReplyToTweet(tweet: Tweet)
     func didUpdateTweet()
+    func tweetCell(cell: TweetCell, didTapProfileButton button: UIButton)
 }
 
 class TweetCell: UITableViewCell {
 
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
@@ -29,7 +30,7 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             // Reset state
-            profileImageView.image = nil
+            profileImageButton.setImage(nil, forState: .Normal)
             nameLabel.text = nil
             screenNameLabel.text = nil
             tweetTextLabel.text = nil
@@ -47,7 +48,7 @@ class TweetCell: UITableViewCell {
             }
             tweetTextLabel.text = tweet.text
             if let profileImageURL = tweet.user?.profileImageURL {
-                profileImageView.setImageWithURL(NSURL(string: profileImageURL)!)
+                profileImageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: profileImageURL)!)
             }
             createdAtLabel.text = tweet.createdAtStringShort
 
@@ -77,8 +78,8 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        profileImageView.layer.cornerRadius = 5
-        profileImageView.clipsToBounds = true
+        profileImageButton.layer.cornerRadius = 5
+        profileImageButton.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -89,6 +90,10 @@ class TweetCell: UITableViewCell {
 
     @IBAction func onReply(sender: UIButton) {
         delegate?.didReplyToTweet(tweet)
+    }
+
+    @IBAction func onProfileImageTap(sender: UIButton) {
+        delegate?.tweetCell(self, didTapProfileButton: sender)
     }
 
     @IBAction func onRetweet(sender: UIButton) {

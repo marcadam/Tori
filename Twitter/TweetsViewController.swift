@@ -104,6 +104,14 @@ extension TweetsViewController: TweetCellDelegate {
     func didUpdateTweet() {
         tableView.reloadData()
     }
+
+    func tweetCell(cell: TweetCell, didTapProfileButton button: UIButton) {
+        let indexPath = tableView.indexPathForCell(cell)!
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let profileVC = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        profileVC.user = tweets![indexPath.row].user
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
 }
 
 extension TweetsViewController: TweetDetailViewControllerDelegate {
