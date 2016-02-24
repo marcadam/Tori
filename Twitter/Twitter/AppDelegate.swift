@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
             Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
 
-            containerVC.menuViewController = menuNC
             menuTVC.containerViewController = containerVC
+            containerVC.menuViewController = menuNC
             containerVC.contentViewController = tweetsNC
 
             window?.rootViewController = containerVC
