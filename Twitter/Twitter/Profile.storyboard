@@ -17,23 +17,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Scene" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccR-0O-j8z">
-                                <rect key="frame" x="110" y="273" width="101" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e0u-90-sCV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Mz2-Yg-qFN"/>
+                                </constraints>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkB-fQ-SdM">
+                                <rect key="frame" x="0.0" y="64" width="320" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="jHK-zd-wKF"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="k7A-L1-3bV" id="H7d-VQ-mQC"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="ckQ-1G-QRa">
+                                <rect key="frame" x="148.5" y="187" width="23" height="37"/>
+                                <connections>
+                                    <action selector="pageControlDidPage:" destination="k7A-L1-3bV" eventType="valueChanged" id="R1k-Oy-g2v"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ccR-0O-j8z" firstAttribute="centerY" secondItem="RVa-3l-UCz" secondAttribute="centerY" id="PgF-dj-Sz2"/>
-                            <constraint firstItem="ccR-0O-j8z" firstAttribute="centerX" secondItem="RVa-3l-UCz" secondAttribute="centerX" id="ue6-z4-Pf1"/>
+                            <constraint firstItem="CkB-fQ-SdM" firstAttribute="top" secondItem="eb6-R4-gKA" secondAttribute="bottom" id="F38-1k-wlb"/>
+                            <constraint firstItem="e0u-90-sCV" firstAttribute="top" secondItem="eb6-R4-gKA" secondAttribute="bottom" id="HKB-7n-fn9"/>
+                            <constraint firstItem="CkB-fQ-SdM" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="I8g-4G-jOt"/>
+                            <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerX" secondItem="RVa-3l-UCz" secondAttribute="centerX" id="O38-eF-g0E"/>
+                            <constraint firstAttribute="trailing" secondItem="e0u-90-sCV" secondAttribute="trailing" id="P5j-JW-fqL"/>
+                            <constraint firstItem="e0u-90-sCV" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="Psr-ww-IHD"/>
+                            <constraint firstAttribute="trailing" secondItem="CkB-fQ-SdM" secondAttribute="trailing" id="ge0-Wq-D33"/>
+                            <constraint firstItem="ckQ-1G-QRa" firstAttribute="bottom" secondItem="CkB-fQ-SdM" secondAttribute="bottom" id="jSy-tS-G4f"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="maG-tN-udw"/>
+                    <connections>
+                        <outlet property="headerImage" destination="e0u-90-sCV" id="ZRr-DN-87Q"/>
+                        <outlet property="headerScrollView" destination="CkB-fQ-SdM" id="b6p-Mn-23Q"/>
+                        <outlet property="pageControl" destination="ckQ-1G-QRa" id="0by-gV-I7U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaM-hM-QhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193.59999999999999" y="499.83999999999997"/>
+            <point key="canvasLocation" x="725" y="499"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="grF-fh-z64">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ZDO-HU-5Qc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yf6-rw-Rm9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k7A-L1-3bV" kind="relationship" relationship="rootViewController" id="bUb-j6-IOR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kVj-r6-rez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="272" y="499"/>
         </scene>
     </scenes>
 </document>

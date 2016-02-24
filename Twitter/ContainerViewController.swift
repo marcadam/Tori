@@ -50,8 +50,8 @@ class ContainerViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let menuStoryboard = UIStoryboard(name: "Menu", bundle: nil)
 
-        let menuNC = menuStoryboard.instantiateViewControllerWithIdentifier("MenuNavigationController") as? UINavigationController
-        let menuTVC = menuNC?.topViewController as! MenuTableViewController
+        let menuNC = menuStoryboard.instantiateViewControllerWithIdentifier("MenuNavigationController") as! UINavigationController
+        let menuTVC = menuNC.topViewController as! MenuTableViewController
 
         let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)

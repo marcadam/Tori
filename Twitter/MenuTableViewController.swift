@@ -42,8 +42,10 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
             let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-            let profileVC = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-            containerViewController.contentViewController = profileVC
+            let profileNC = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
+            let profileVC = profileNC.topViewController as! ProfileViewController
+            profileVC.user = User.currentUser
+            containerViewController.contentViewController = profileNC
         } else if indexPath.row == 1 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
