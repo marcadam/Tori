@@ -136,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="1565" y="-75"/>
         </scene>
-        <!--Home-->
+        <!--Tweets View Controller-->
         <scene sceneID="mpS-bz-JvF">
             <objects>
                 <viewController storyboardIdentifier="TweetsViewController" id="af2-yY-zn8" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -304,7 +304,7 @@
                             <constraint firstAttribute="trailing" secondItem="T85-5a-uWM" secondAttribute="trailing" id="vhH-Re-zYW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="3dE-t4-RgW">
+                    <navigationItem key="navigationItem" id="3dE-t4-RgW">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="p1u-e6-pgU">
                             <connections>
                                 <action selector="onLogout:" destination="af2-yY-zn8" id="l5s-08-vlH"/>
