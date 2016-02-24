@@ -26,6 +26,10 @@ class ContainerViewController: UIViewController {
         didSet {
             view.layoutIfNeeded()
             contentView.addSubview(contentViewController.view)
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.contentViewLeadingConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }
         }
     }
 
