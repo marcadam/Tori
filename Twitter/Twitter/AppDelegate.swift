@@ -14,7 +14,9 @@ import BDBOAuth1Manager
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let containerStoryboard = UIStoryboard(name: "Container", bundle: nil)
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    let menuStoryboard = UIStoryboard(name: "Menu", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,10 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
 
         if User.currentUser != nil {
-            // Go to the timeline scene
-            let tnc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
-            Utils.configureDefaultNavigationBar(tnc.navigationBar)
-            window?.rootViewController = tnc
+            let containerVC = containerStoryboard.instantiateViewControllerWithIdentifier("ContainerViewController") as! ContainerViewController
+            let menuNC = menuStoryboard.instantiateViewControllerWithIdentifier("MenuNavigationController") as? UINavigationController
+            let menuTVC = menuNC?.topViewController as! MenuTableViewController
+
+            let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+            Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
+
+            containerVC.menuViewController = menuNC
+            menuTVC.containerViewController = containerVC
+            containerVC.contentViewController = tweetsNC
+
+            window?.rootViewController = containerVC
         }
 
         return true
@@ -59,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func userDidLogout() {
-        let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         window?.rootViewController = vc
     }
 }

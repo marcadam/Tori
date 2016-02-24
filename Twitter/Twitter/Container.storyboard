@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Container View Controller-->
+        <scene sceneID="rNT-Tm-6RW">
+            <objects>
+                <viewController storyboardIdentifier="ContainerViewController" id="NXQ-UG-q4O" customClass="ContainerViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mcb-wr-Kae"/>
+                        <viewControllerLayoutGuide type="bottom" id="84W-zB-d7B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sdP-1g-EIL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-Li-Gvb" userLabel="Menu View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQv-M1-EEA" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="SGb-vI-tiH" appends="YES" id="ZQM-MN-WIR"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZTb-Li-Gvb" firstAttribute="top" secondItem="sdP-1g-EIL" secondAttribute="top" id="72D-oQ-zqQ"/>
+                            <constraint firstItem="wQv-M1-EEA" firstAttribute="width" secondItem="sdP-1g-EIL" secondAttribute="width" id="7Zx-sD-zfN"/>
+                            <constraint firstAttribute="trailing" secondItem="ZTb-Li-Gvb" secondAttribute="trailing" id="9aH-7l-X63"/>
+                            <constraint firstItem="wQv-M1-EEA" firstAttribute="leading" secondItem="sdP-1g-EIL" secondAttribute="leading" id="Bbx-oL-iXU"/>
+                            <constraint firstItem="84W-zB-d7B" firstAttribute="top" secondItem="ZTb-Li-Gvb" secondAttribute="bottom" id="Ib8-Ld-Sm5"/>
+                            <constraint firstItem="84W-zB-d7B" firstAttribute="top" secondItem="wQv-M1-EEA" secondAttribute="bottom" id="ML7-kt-sdh"/>
+                            <constraint firstItem="wQv-M1-EEA" firstAttribute="top" secondItem="sdP-1g-EIL" secondAttribute="top" id="SpK-1s-k9v"/>
+                            <constraint firstItem="ZTb-Li-Gvb" firstAttribute="leading" secondItem="sdP-1g-EIL" secondAttribute="leading" id="Tb6-Zr-DhX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="wQv-M1-EEA" id="fho-ra-TKZ"/>
+                        <outlet property="contentViewLeadingConstraint" destination="Bbx-oL-iXU" id="FdG-dI-Pbo"/>
+                        <outlet property="menuView" destination="ZTb-Li-Gvb" id="b59-md-X5Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ix-ca-cqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="SGb-vI-tiH">
+                    <connections>
+                        <action selector="onPanGesture:" destination="NXQ-UG-q4O" id="wTj-xt-qY6"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="492" y="198"/>
+        </scene>
+    </scenes>
+</document>
