@@ -20,6 +20,9 @@ class User {
     var profileImageURL: String?
     var profileBannerURL: String?
     var tagline: String?
+    var followersCount: Int?
+    var friendsCount: Int?
+    var statusesCount: Int?
     var dictionary: NSDictionary
 
     init(dictionary: NSDictionary) {
@@ -30,6 +33,9 @@ class User {
         profileImageURL = dictionary["profile_image_url"] as? String
         profileBannerURL = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
+        followersCount = dictionary["followers_count"] as? Int
+        friendsCount = dictionary["friends_count"] as? Int
+        statusesCount = dictionary["statuses_count"] as? Int
     }
 
     func logout() {
