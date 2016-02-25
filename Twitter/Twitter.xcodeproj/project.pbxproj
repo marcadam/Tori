@@ -22,6 +22,7 @@
 		49ADC2411C7CED70003BC437 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADC2401C7CED70003BC437 /* MenuTableViewController.swift */; };
 		49ADC2431C7D3A41003BC437 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ADC2421C7D3A41003BC437 /* Profile.storyboard */; };
 		49ADC2451C7D3B18003BC437 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADC2441C7D3B18003BC437 /* ProfileViewController.swift */; };
+		49D239171C7F9A1000A272B7 /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D239161C7F9A1000A272B7 /* Compose.storyboard */; };
 		49DCEA191C75340200A2B24B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DCEA181C75340200A2B24B /* AppDelegate.swift */; };
 		49DCEA1B1C75340200A2B24B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DCEA1A1C75340200A2B24B /* LoginViewController.swift */; };
 		49DCEA1E1C75340200A2B24B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DCEA1C1C75340200A2B24B /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		49ADC2401C7CED70003BC437 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		49ADC2421C7D3A41003BC437 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		49ADC2441C7D3B18003BC437 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		49D239161C7F9A1000A272B7 /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		49DCEA151C75340200A2B24B /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DCEA181C75340200A2B24B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49DCEA1A1C75340200A2B24B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Twitter/LoginViewController.swift; sourceTree = "<group>"; };
@@ -87,8 +89,9 @@
 		49ADC2461C7E6FAB003BC437 /* Storyboards and Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				49DCEA1C1C75340200A2B24B /* Main.storyboard */,
 				49ADC2381C7CE61D003BC437 /* Container.storyboard */,
+				49DCEA1C1C75340200A2B24B /* Main.storyboard */,
+				49D239161C7F9A1000A272B7 /* Compose.storyboard */,
 				49ADC23A1C7CE637003BC437 /* Menu.storyboard */,
 				49ADC2421C7D3A41003BC437 /* Profile.storyboard */,
 				492D01F31C7D6471000AAF17 /* ProfileHeaderView.xib */,
@@ -271,6 +274,7 @@
 				49DCEA201C75340200A2B24B /* Assets.xcassets in Resources */,
 				49ADC2391C7CE61D003BC437 /* Container.storyboard in Resources */,
 				492D01F41C7D6471000AAF17 /* ProfileHeaderView.xib in Resources */,
+				49D239171C7F9A1000A272B7 /* Compose.storyboard in Resources */,
 				49DCEA1E1C75340200A2B24B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
