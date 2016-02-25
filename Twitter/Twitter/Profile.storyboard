@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Profile View Controller-->
@@ -48,18 +49,93 @@
                                     <action selector="pageControlDidPage:" destination="k7A-L1-3bV" eventType="valueChanged" id="R1k-Oy-g2v"/>
                                 </connections>
                             </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUS-3E-nGe" userLabel="Horizontal Rule View">
+                                <rect key="frame" x="0.0" y="224" width="320" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="UuC-9O-5zo"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtN-aM-UJq" userLabel="Stats View">
+                                <rect key="frame" x="0.0" y="225" width="320" height="54"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sn1-CB-jgx" userLabel="Tweets View">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiK-x1-cC1" userLabel="Vertical Rule View">
+                                        <rect key="frame" x="106" y="0.0" width="1" height="54"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="lv0-Z6-K0b"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="py3-Aj-be6" userLabel="Following View">
+                                        <rect key="frame" x="107" y="0.0" width="106" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C88-vG-leY" userLabel="Vertical Rule View">
+                                        <rect key="frame" x="213" y="0.0" width="1" height="54"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="mIk-H7-QGn"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GC0-2j-UEC" userLabel="Followers View">
+                                        <rect key="frame" x="214" y="0.0" width="106" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="GC0-2j-UEC" firstAttribute="leading" secondItem="C88-vG-leY" secondAttribute="trailing" id="5jX-v1-cM7"/>
+                                    <constraint firstItem="py3-Aj-be6" firstAttribute="leading" secondItem="sn1-CB-jgx" secondAttribute="trailing" id="6Cl-a9-I4h"/>
+                                    <constraint firstItem="py3-Aj-be6" firstAttribute="leading" secondItem="ZiK-x1-cC1" secondAttribute="trailing" id="6HZ-UA-V7j"/>
+                                    <constraint firstItem="C88-vG-leY" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="top" id="AIN-7H-sBw"/>
+                                    <constraint firstAttribute="bottom" secondItem="GC0-2j-UEC" secondAttribute="bottom" id="GRl-eq-li0"/>
+                                    <constraint firstItem="sn1-CB-jgx" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="top" id="JBG-MG-vp0"/>
+                                    <constraint firstItem="sn1-CB-jgx" firstAttribute="leading" secondItem="ZtN-aM-UJq" secondAttribute="leading" id="Lhb-SP-U1I"/>
+                                    <constraint firstAttribute="height" constant="54" id="N0d-f4-4wb"/>
+                                    <constraint firstAttribute="bottom" secondItem="py3-Aj-be6" secondAttribute="bottom" id="NF8-xW-C4c"/>
+                                    <constraint firstItem="GC0-2j-UEC" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="top" id="YIj-uE-DQh"/>
+                                    <constraint firstAttribute="bottom" secondItem="sn1-CB-jgx" secondAttribute="bottom" id="Zcv-bl-udv"/>
+                                    <constraint firstAttribute="bottom" secondItem="C88-vG-leY" secondAttribute="bottom" id="a6M-Jp-p1k"/>
+                                    <constraint firstItem="C88-vG-leY" firstAttribute="leading" secondItem="py3-Aj-be6" secondAttribute="trailing" id="bT2-6I-kEn"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZiK-x1-cC1" secondAttribute="bottom" id="lON-sO-tTq"/>
+                                    <constraint firstItem="py3-Aj-be6" firstAttribute="centerX" secondItem="ZtN-aM-UJq" secondAttribute="centerX" id="upM-rY-qLl"/>
+                                    <constraint firstItem="ZiK-x1-cC1" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="top" id="yoF-RP-TMY"/>
+                                    <constraint firstAttribute="trailing" secondItem="GC0-2j-UEC" secondAttribute="trailing" id="yr4-ob-IxF"/>
+                                    <constraint firstItem="py3-Aj-be6" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="top" id="yrd-Xp-pKF"/>
+                                    <constraint firstItem="py3-Aj-be6" firstAttribute="width" secondItem="ZtN-aM-UJq" secondAttribute="width" multiplier="0.33" id="zYZ-hH-yMr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxb-gc-TpF" userLabel="Horizontal Rule View">
+                                <rect key="frame" x="0.0" y="279" width="320" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ax3-GE-Jz5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZtN-aM-UJq" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="2VG-bD-Z0D"/>
+                            <constraint firstItem="XUS-3E-nGe" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="Chk-lA-oNx"/>
                             <constraint firstItem="CkB-fQ-SdM" firstAttribute="top" secondItem="eb6-R4-gKA" secondAttribute="bottom" id="F38-1k-wlb"/>
+                            <constraint firstItem="uxb-gc-TpF" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="bottom" id="FHH-YO-nI0"/>
+                            <constraint firstItem="uxb-gc-TpF" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="FRz-HL-5af"/>
                             <constraint firstItem="e0u-90-sCV" firstAttribute="top" secondItem="eb6-R4-gKA" secondAttribute="bottom" id="HKB-7n-fn9"/>
                             <constraint firstItem="CkB-fQ-SdM" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="I8g-4G-jOt"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerX" secondItem="RVa-3l-UCz" secondAttribute="centerX" id="O38-eF-g0E"/>
                             <constraint firstAttribute="trailing" secondItem="e0u-90-sCV" secondAttribute="trailing" id="P5j-JW-fqL"/>
                             <constraint firstItem="e0u-90-sCV" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="Psr-ww-IHD"/>
+                            <constraint firstAttribute="trailing" secondItem="XUS-3E-nGe" secondAttribute="trailing" id="W7S-nZ-j6n"/>
+                            <constraint firstItem="XUS-3E-nGe" firstAttribute="top" secondItem="ckQ-1G-QRa" secondAttribute="bottom" id="W8T-YE-mCP"/>
+                            <constraint firstAttribute="trailing" secondItem="uxb-gc-TpF" secondAttribute="trailing" id="fKD-w2-A81"/>
+                            <constraint firstItem="ZtN-aM-UJq" firstAttribute="top" secondItem="XUS-3E-nGe" secondAttribute="bottom" id="gaJ-c9-rUV"/>
                             <constraint firstAttribute="trailing" secondItem="CkB-fQ-SdM" secondAttribute="trailing" id="ge0-Wq-D33"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerY" secondItem="QXg-Ih-PYd" secondAttribute="centerY" id="i2O-iw-S2f"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="bottom" secondItem="CkB-fQ-SdM" secondAttribute="bottom" id="jSy-tS-G4f"/>
+                            <constraint firstAttribute="trailing" secondItem="ZtN-aM-UJq" secondAttribute="trailing" id="uDP-WD-2lW"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerX" secondItem="QXg-Ih-PYd" secondAttribute="centerX" id="yZP-Cs-RRc"/>
                         </constraints>
                     </view>
