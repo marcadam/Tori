@@ -21,7 +21,7 @@ class User {
     var profileBannerURL: String?
     var tagline: String?
     var followersCount: Int?
-    var friendsCount: Int?
+    var followingCount: Int?
     var statusesCount: Int?
     var dictionary: NSDictionary
 
@@ -34,7 +34,7 @@ class User {
         profileBannerURL = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
         followersCount = dictionary["followers_count"] as? Int
-        friendsCount = dictionary["friends_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
         statusesCount = dictionary["statuses_count"] as? Int
     }
 

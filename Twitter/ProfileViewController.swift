@@ -14,6 +14,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageControlBackingView: UIView!
+    @IBOutlet weak var tweetCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
 
     var user: User?
 
@@ -38,6 +41,16 @@ class ProfileViewController: UIViewController {
         profileHeaderView.user = user
         let profileDescriptionView = ProfileDescriptionView(frame: CGRectMake(pageWidth, 0, pageWidth, 160))
         profileDescriptionView.user = user
+
+        if let tweetCount = user?.statusesCount {
+            tweetCountLabel.text = "\(tweetCount)"
+        }
+        if let followingCount = user?.followingCount {
+            followingCountLabel.text = "\(followingCount)"
+        }
+        if let followersCount = user?.followersCount {
+            followersCountLabel.text = "\(followersCount)"
+        }
 
         headerScrollView.addSubview(profileHeaderView)
         headerScrollView.addSubview(profileDescriptionView)
