@@ -95,7 +95,7 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension TweetsViewController: TweetCellDelegate {
     func didReplyToTweet(tweet: Tweet) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Compose", bundle: nil)
         let tcvc = storyboard.instantiateViewControllerWithIdentifier("TweetComposeViewController") as! TweetComposeViewController
         tcvc.tweet = tweet
         presentViewController(tcvc, animated: true, completion: nil)
