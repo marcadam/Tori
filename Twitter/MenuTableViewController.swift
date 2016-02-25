@@ -45,6 +45,7 @@ class MenuTableViewController: UITableViewController {
             let profileNC = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
             let profileVC = profileNC.topViewController as! ProfileViewController
             profileVC.user = User.currentUser
+            Utils.configureDefaultNavigationBar(profileNC.navigationBar)
             containerViewController.contentViewController = profileNC
         } else if indexPath.row == 1 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
