@@ -14,6 +14,7 @@ import BDBOAuth1Manager
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
     let containerStoryboard = UIStoryboard(name: "Container", bundle: nil)
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     let menuStoryboard = UIStoryboard(name: "Menu", bundle: nil)
@@ -75,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func userDidLogout() {
-        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        let vc = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         window?.rootViewController = vc
     }
 }
