@@ -14,20 +14,28 @@ class TweetsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var tweets: [Tweet]?
+    var showMentions = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "insertNewTweet:", name: userDidPostTweetNotification, object: nil)
 
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
 
         let refreshControll = UIRefreshControl()
-        refreshControll.addTarget(self, action: "refreshTweets:", forControlEvents: .ValueChanged)
-        tableView.insertSubview(refreshControll, atIndex: 0)
 
-        fetchTweets()
+        if showMentions {
+            title = "Mentions"
+            refreshControll.addTarget(self, action: "refreshMentions:", forControlEvents: .ValueChanged)
+            tableView.insertSubview(refreshControll, atIndex: 0)
+            fetchMentions()
+        } else {
+            title = "Timeline"
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "insertNewTweet:", name: userDidPostTweetNotification, object: nil)
+            refreshControll.addTarget(self, action: "refreshTweets:", forControlEvents: .ValueChanged)
+            tableView.insertSubview(refreshControll, atIndex: 0)
+            fetchTweets()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +63,23 @@ class TweetsViewController: UIViewController {
 
     func refreshTweets(refreshControll: UIRefreshControl) {
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> Void in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            refreshControll.endRefreshing()
+        }
+    }
+
+    func fetchMentions() {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        TwitterClient.sharedInstance.mentionsWithParams(nil) { (tweets, error) -> Void in
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }
+    }
+
+    func refreshMentions(refreshControll: UIRefreshControl) {
+        TwitterClient.sharedInstance.mentionsWithParams(nil) { (tweets, error) -> Void in
             self.tweets = tweets
             self.tableView.reloadData()
             refreshControll.endRefreshing()

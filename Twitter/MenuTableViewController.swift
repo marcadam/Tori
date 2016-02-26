@@ -52,6 +52,13 @@ class MenuTableViewController: UITableViewController {
             let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
             Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
             containerViewController.contentViewController = tweetsNC
+        } else if indexPath.row == 2 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+            Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
+            let tweetVC = tweetsNC.topViewController as! TweetsViewController
+            tweetVC.showMentions = true
+            containerViewController.contentViewController = tweetsNC
         }
 
         // self.containerViewController.contentViewLeadingConstraint.constant = 0
