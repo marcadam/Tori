@@ -180,7 +180,7 @@
                                 <action selector="onLogout:" destination="af2-yY-zn8" id="l5s-08-vlH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="k7V-YW-ai8">
+                        <barButtonItem key="rightBarButtonItem" image="ComposeTweet" id="k7V-YW-ai8">
                             <connections>
                                 <segue destination="VRl-gg-36M" kind="modal" identifier="newTweetsToComposeSegue" id="nAI-Z8-Vsk"/>
                             </connections>
@@ -435,6 +435,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ComposeTweet" width="19" height="20"/>
         <image name="Favorite" width="27" height="36"/>
         <image name="Reply" width="32" height="36"/>
         <image name="Retweet" width="37" height="36"/>
