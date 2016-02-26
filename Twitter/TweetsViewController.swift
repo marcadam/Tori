@@ -9,12 +9,18 @@
 import UIKit
 import MBProgressHUD
 
+protocol TweetsViewControllerDelegate: class {
+    func tweetView(tweetView: TweetsViewController, didTapMenuButton: UIBarButtonItem)
+}
+
 class TweetsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
     var tweets: [Tweet]?
     var showMentions = false
+
+    weak var delegate: TweetsViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,8 +99,8 @@ class TweetsViewController: UIViewController {
         }
     }
 
-    @IBAction func onLogout(sender: UIBarButtonItem) {
-        User.currentUser?.logout()
+    @IBAction func onMenuTap(sender: UIBarButtonItem) {
+        delegate?.tweetView(self, didTapMenuButton: sender)
     }
 }
 
@@ -135,6 +141,7 @@ extension TweetsViewController: TweetCellDelegate {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let profileVC = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
         profileVC.user = tweets![indexPath.row].user
+        profileVC.hidesMenuButton = true
         navigationController?.pushViewController(profileVC, animated: true)
     }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ProfileViewControllerDelegate: class {
+    func profileView(profileView: ProfileViewController, didTapMenuButton: UIBarButtonItem)
+}
+
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var headerImage: UIImageView!
@@ -19,9 +23,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followersCountLabel: UILabel!
 
     var user: User?
+    var hidesMenuButton = false
+
+    weak var delegate: ProfileViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if hidesMenuButton {
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.hidesBackButton = false
+        }
 
         // Should maybe use profile_background_color instead
         // And may want to use profile_text_color for font color
@@ -64,6 +76,10 @@ class ProfileViewController: UIViewController {
     @IBAction func pageControlDidPage(sender: UIPageControl) {
         let xOffset = headerScrollView.bounds.width * CGFloat(pageControl.currentPage)
         headerScrollView.setContentOffset(CGPointMake(xOffset,0) , animated: true)
+    }
+
+    @IBAction func onMenuTap(sender: UIBarButtonItem) {
+        delegate?.profileView(self, didTapMenuButton: sender)
     }
 }
 

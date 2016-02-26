@@ -12,9 +12,10 @@ class ContainerViewController: UIViewController {
 
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentView: UIView!
-
     @IBOutlet weak var contentViewLeadingConstraint: NSLayoutConstraint!
+
     var originalContentViewLeadingConstraint: CGFloat!
+    var menuOpen = false
 
     var menuViewController: UIViewController! {
         didSet {
@@ -40,6 +41,7 @@ class ContainerViewController: UIViewController {
                 self.contentViewLeadingConstraint.constant = 0
                 self.view.layoutIfNeeded()
             }
+            menuOpen = false
         }
     }
 
@@ -56,6 +58,8 @@ class ContainerViewController: UIViewController {
 
         let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
+        let tweetsVC = tweetsNC.topViewController as! TweetsViewController
+        tweetsVC.delegate = self
 
         menuViewController = menuNC
         menuTVC.containerViewController = self
@@ -78,12 +82,38 @@ class ContainerViewController: UIViewController {
         } else if sender.state == .Ended {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 if velocity.x > 0 {
-                    self.contentViewLeadingConstraint.constant = self.view.frame.size.width - 44
+                    self.contentViewLeadingConstraint.constant = self.view.frame.size.width - 50
+                    self.menuOpen = true
                 } else {
                     self.contentViewLeadingConstraint.constant = 0
+                    self.menuOpen = false
                 }
                 self.view.layoutIfNeeded()
             })
         }
+    }
+}
+
+extension ContainerViewController: TweetsViewControllerDelegate, ProfileViewControllerDelegate {
+    private func toggleMenu() {
+        originalContentViewLeadingConstraint = contentViewLeadingConstraint.constant
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            if self.menuOpen {
+                self.contentViewLeadingConstraint.constant = 0
+                self.menuOpen = false
+            } else {
+                self.contentViewLeadingConstraint.constant = self.view.frame.size.width - 50
+                self.menuOpen = true
+            }
+            self.view.layoutIfNeeded()
+        })
+    }
+
+    func tweetView(tweetView: TweetsViewController, didTapMenuButton: UIBarButtonItem) {
+        toggleMenu()
+    }
+
+    func profileView(profileView: ProfileViewController, didTapMenuButton: UIBarButtonItem) {
+        toggleMenu()
     }
 }

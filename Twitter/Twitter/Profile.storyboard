@@ -205,7 +205,13 @@
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerX" secondItem="QXg-Ih-PYd" secondAttribute="centerX" id="yZP-Cs-RRc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="maG-tN-udw"/>
+                    <navigationItem key="navigationItem" id="maG-tN-udw">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="aRY-jY-p50">
+                            <connections>
+                                <action selector="onMenuTap:" destination="k7A-L1-3bV" id="U9P-xi-Ko3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="followersCountLabel" destination="QMc-e3-Pln" id="W0K-5w-4lZ"/>
                         <outlet property="followingCountLabel" destination="mts-J6-BvW" id="uuB-yq-OqS"/>
@@ -239,4 +245,7 @@
             <point key="canvasLocation" x="272" y="499"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Menu" width="21" height="18"/>
+    </resources>
 </document>

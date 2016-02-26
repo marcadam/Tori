@@ -33,6 +33,8 @@ class LoginViewController: UIViewController {
 
         let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
+        let tweetsVC = tweetsNC.topViewController as! TweetsViewController
+        tweetsVC.delegate = containerVC
 
         menuTVC.containerViewController = containerVC
         containerVC.menuViewController = menuNC

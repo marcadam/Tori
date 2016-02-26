@@ -37,12 +37,15 @@ class MenuTableViewController: UITableViewController {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
+                let tweetsVC = tweetsNC.topViewController as! TweetsViewController
+                tweetsVC.delegate = containerViewController
                 containerViewController.contentViewController = tweetsNC
             } else if indexPath.row == 1 {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
                 let tweetVC = tweetsNC.topViewController as! TweetsViewController
+                tweetVC.delegate = containerViewController
                 tweetVC.showMentions = true
                 containerViewController.contentViewController = tweetsNC
             }
@@ -51,6 +54,7 @@ class MenuTableViewController: UITableViewController {
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 let profileNC = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
                 let profileVC = profileNC.topViewController as! ProfileViewController
+                profileVC.delegate = containerViewController
                 profileVC.user = User.currentUser
                 Utils.configureDefaultNavigationBar(profileNC.navigationBar)
                 containerViewController.contentViewController = profileNC
