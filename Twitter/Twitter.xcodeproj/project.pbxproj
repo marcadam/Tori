@@ -24,6 +24,8 @@
 		49ADC2451C7D3B18003BC437 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADC2441C7D3B18003BC437 /* ProfileViewController.swift */; };
 		49D239171C7F9A1000A272B7 /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D239161C7F9A1000A272B7 /* Compose.storyboard */; };
 		49D2391F1C7FF38900A272B7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D2391E1C7FF38900A272B7 /* Login.storyboard */; };
+		49D239211C8023F000A272B7 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D239201C8023F000A272B7 /* Account.storyboard */; };
+		49D239231C80242900A272B7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D239221C80242900A272B7 /* AccountViewController.swift */; };
 		49DCEA191C75340200A2B24B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DCEA181C75340200A2B24B /* AppDelegate.swift */; };
 		49DCEA1B1C75340200A2B24B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DCEA1A1C75340200A2B24B /* LoginViewController.swift */; };
 		49DCEA1E1C75340200A2B24B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DCEA1C1C75340200A2B24B /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		49ADC2441C7D3B18003BC437 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		49D239161C7F9A1000A272B7 /* Compose.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		49D2391E1C7FF38900A272B7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		49D239201C8023F000A272B7 /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		49D239221C80242900A272B7 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		49DCEA151C75340200A2B24B /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DCEA181C75340200A2B24B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49DCEA1A1C75340200A2B24B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Twitter/LoginViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 				49D239161C7F9A1000A272B7 /* Compose.storyboard */,
 				49ADC23A1C7CE637003BC437 /* Menu.storyboard */,
 				49ADC2421C7D3A41003BC437 /* Profile.storyboard */,
+				49D239201C8023F000A272B7 /* Account.storyboard */,
 				492D01F31C7D6471000AAF17 /* ProfileHeaderView.xib */,
 				492D01F71C7D7C00000AAF17 /* ProfileDescriptionView.xib */,
 			);
@@ -175,6 +180,7 @@
 				49ADC23C1C7CE917003BC437 /* ContainerViewController.swift */,
 				49ADC2401C7CED70003BC437 /* MenuTableViewController.swift */,
 				49ADC2441C7D3B18003BC437 /* ProfileViewController.swift */,
+				49D239221C80242900A272B7 /* AccountViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -276,6 +282,7 @@
 				492D01F81C7D7C00000AAF17 /* ProfileDescriptionView.xib in Resources */,
 				49DCEA201C75340200A2B24B /* Assets.xcassets in Resources */,
 				49ADC2391C7CE61D003BC437 /* Container.storyboard in Resources */,
+				49D239211C8023F000A272B7 /* Account.storyboard in Resources */,
 				492D01F41C7D6471000AAF17 /* ProfileHeaderView.xib in Resources */,
 				49D239171C7F9A1000A272B7 /* Compose.storyboard in Resources */,
 				49D2391F1C7FF38900A272B7 /* Login.storyboard in Resources */,
@@ -344,6 +351,7 @@
 				492D01FA1C7D7D7E000AAF17 /* ProfileDescriptionView.swift in Sources */,
 				49DCEA3F1C77160100A2B24B /* TweetDetailViewController.swift in Sources */,
 				49ADC2411C7CED70003BC437 /* MenuTableViewController.swift in Sources */,
+				49D239231C80242900A272B7 /* AccountViewController.swift in Sources */,
 				49DCEA381C76A2C200A2B24B /* TweetsViewController.swift in Sources */,
 				499C121D1C77CA5C00C9503D /* TweetDetailCell.swift in Sources */,
 				49ADC2451C7D3B18003BC437 /* ProfileViewController.swift in Sources */,

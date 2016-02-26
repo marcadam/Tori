@@ -14,12 +14,6 @@ class MenuTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,12 +24,10 @@ class MenuTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 2
     }
 
@@ -63,10 +55,11 @@ class MenuTableViewController: UITableViewController {
                 Utils.configureDefaultNavigationBar(profileNC.navigationBar)
                 containerViewController.contentViewController = profileNC
             } else if indexPath.row == 1 {
-
+                let storyboard = UIStoryboard(name: "Account", bundle: nil)
+                let accountVC = storyboard.instantiateViewControllerWithIdentifier("AccountViewController") as! AccountViewController
+                containerViewController.contentViewController = accountVC
             }
         }
-        // self.containerViewController.contentViewLeadingConstraint.constant = 0
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 

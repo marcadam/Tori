@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Account View Controller-->
+        <scene sceneID="8AD-cN-UgX">
+            <objects>
+                <viewController storyboardIdentifier="AccountViewController" id="qOq-dj-CSq" customClass="AccountViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tn5-YE-wHi"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Hv-rk-Qhr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d4S-KE-RXW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irq-SW-HXc">
+                                <rect key="frame" x="136" y="269" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogout:" destination="qOq-dj-CSq" eventType="touchUpInside" id="4G7-TI-gYg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerY" secondItem="d4S-KE-RXW" secondAttribute="centerY" id="Pw0-bB-b5Z"/>
+                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerX" secondItem="d4S-KE-RXW" secondAttribute="centerX" id="nWn-Ib-1WB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qkr-pF-IPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205" y="-33"/>
+        </scene>
+    </scenes>
+</document>
