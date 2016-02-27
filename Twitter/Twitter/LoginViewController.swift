@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
         tweetsVC.delegate = containerVC
 
         menuTVC.containerViewController = containerVC
+        tweetsVC.containerViewController = containerVC
         containerVC.menuViewController = menuNC
         containerVC.contentViewController = tweetsNC
     }

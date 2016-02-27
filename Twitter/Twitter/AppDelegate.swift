@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tweetsVC.delegate = containerVC
 
             menuTVC.containerViewController = containerVC
+            tweetsVC.containerViewController = containerVC
             containerVC.menuViewController = menuNC
             containerVC.contentViewController = tweetsNC
 

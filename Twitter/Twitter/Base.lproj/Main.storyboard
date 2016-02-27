@@ -182,7 +182,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ComposeTweet" id="k7V-YW-ai8">
                             <connections>
-                                <segue destination="VRl-gg-36M" kind="modal" identifier="newTweetsToComposeSegue" id="nAI-Z8-Vsk"/>
+                                <action selector="onComposeTap:" destination="af2-yY-zn8" id="aBh-Qp-FsE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -340,7 +340,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Reply"/>
                                                     <connections>
-                                                        <segue destination="VRl-gg-36M" kind="modal" identifier="replyDetailToComposeSegue" id="poy-2v-yuy"/>
+                                                        <action selector="onReplyTap:" destination="PNy-GD-KKD" eventType="touchUpInside" id="pXI-x5-6xv"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niG-vv-amL">
@@ -425,14 +425,6 @@
             </objects>
             <point key="canvasLocation" x="690" y="610"/>
         </scene>
-        <!--TweetComposeViewController-->
-        <scene sceneID="A5e-nm-1ww">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TweetComposeViewController" storyboardName="Compose" referencedIdentifier="TweetComposeViewController" id="VRl-gg-36M" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fmk-G5-TM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1565" y="-75"/>
-        </scene>
     </scenes>
     <resources>
         <image name="ComposeTweet" width="19" height="20"/>
@@ -441,7 +433,4 @@
         <image name="Reply" width="32" height="36"/>
         <image name="Retweet" width="37" height="36"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="nAI-Z8-Vsk"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var tweet: Tweet?
+    var containerViewController: ContainerViewController!
 
     weak var delegate: TweetDetailViewControllerDelegate?
 
@@ -33,11 +34,11 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "replyDetailToComposeSegue" {
-            let tcvc = segue.destinationViewController as! TweetComposeViewController
-            tcvc.tweet = tweet
-        }
+    @IBAction func onReplyTap(sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Compose", bundle: nil)
+        let tweetComposeVC = storyboard.instantiateViewControllerWithIdentifier("TweetComposeViewController") as! TweetComposeViewController
+        tweetComposeVC.tweet = tweet
+        containerViewController.presentViewController(tweetComposeVC, animated: true, completion: nil)
     }
 }
 

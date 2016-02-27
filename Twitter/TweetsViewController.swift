@@ -20,6 +20,8 @@ class TweetsViewController: UIViewController {
     var tweets: [Tweet]?
     var showMentions = false
 
+    var containerViewController: ContainerViewController!
+
     weak var delegate: TweetsViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -53,6 +55,7 @@ class TweetsViewController: UIViewController {
         if segue.identifier == "tweetDetailSegue" {
             let tdvc = segue.destinationViewController as! TweetDetailViewController
             tdvc.delegate = self
+            tdvc.containerViewController = containerViewController
             let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)!
             tdvc.tweet = tweets![indexPath.row]
         }
@@ -102,6 +105,12 @@ class TweetsViewController: UIViewController {
     @IBAction func onMenuTap(sender: UIBarButtonItem) {
         delegate?.tweetView(self, didTapMenuButton: sender)
     }
+
+    @IBAction func onComposeTap(sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Compose", bundle: nil)
+        let tweetComposeVC = storyboard.instantiateViewControllerWithIdentifier("TweetComposeViewController")
+        containerViewController.presentViewController(tweetComposeVC, animated: true, completion: nil)
+    }
 }
 
 extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -129,7 +138,7 @@ extension TweetsViewController: TweetCellDelegate {
         let storyboard = UIStoryboard(name: "Compose", bundle: nil)
         let tcvc = storyboard.instantiateViewControllerWithIdentifier("TweetComposeViewController") as! TweetComposeViewController
         tcvc.tweet = tweet
-        presentViewController(tcvc, animated: true, completion: nil)
+        containerViewController.presentViewController(tcvc, animated: true, completion: nil)
     }
 
     func didUpdateTweet() {

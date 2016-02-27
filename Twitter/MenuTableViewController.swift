@@ -39,14 +39,16 @@ class MenuTableViewController: UITableViewController {
                 Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
                 let tweetsVC = tweetsNC.topViewController as! TweetsViewController
                 tweetsVC.delegate = containerViewController
+                tweetsVC.containerViewController = containerViewController
                 containerViewController.contentViewController = tweetsNC
             } else if indexPath.row == 1 {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
-                let tweetVC = tweetsNC.topViewController as! TweetsViewController
-                tweetVC.delegate = containerViewController
-                tweetVC.showMentions = true
+                let tweetsVC = tweetsNC.topViewController as! TweetsViewController
+                tweetsVC.delegate = containerViewController
+                tweetsVC.containerViewController = containerViewController
+                tweetsVC.showMentions = true
                 containerViewController.contentViewController = tweetsNC
             }
         } else if indexPath.section == 1 {

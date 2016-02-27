@@ -55,11 +55,13 @@ class ContainerViewController: UIViewController {
         let menuNC = menuStoryboard.instantiateViewControllerWithIdentifier("MenuNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(menuNC.navigationBar)
         let menuTVC = menuNC.topViewController as! MenuTableViewController
+        menuTVC.containerViewController = self
 
         let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
         let tweetsVC = tweetsNC.topViewController as! TweetsViewController
         tweetsVC.delegate = self
+        tweetsVC.containerViewController = self
 
         menuViewController = menuNC
         menuTVC.containerViewController = self
