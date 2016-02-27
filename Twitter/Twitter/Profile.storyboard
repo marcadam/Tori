@@ -193,9 +193,13 @@
                                     <constraint firstAttribute="height" constant="1" id="ax3-GE-Jz5"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ilq-nq-IsC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ilq-nq-IsC">
                                 <rect key="frame" x="0.0" y="274" width="320" height="294"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="k7A-L1-3bV" id="5yB-84-2ei"/>
+                                    <outlet property="delegate" destination="k7A-L1-3bV" id="W6K-Tr-6Cp"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -239,6 +243,7 @@
                         <outlet property="headerScrollView" destination="CkB-fQ-SdM" id="b6p-Mn-23Q"/>
                         <outlet property="pageControl" destination="ckQ-1G-QRa" id="0by-gV-I7U"/>
                         <outlet property="pageControlBackingView" destination="QXg-Ih-PYd" id="adW-11-2sZ"/>
+                        <outlet property="tableView" destination="ilq-nq-IsC" id="RlS-La-HBG"/>
                         <outlet property="tweetCountLabel" destination="M1a-FB-wuH" id="MQo-x1-0Wc"/>
                     </connections>
                 </viewController>
