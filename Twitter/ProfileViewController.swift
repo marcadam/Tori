@@ -81,6 +81,19 @@ class ProfileViewController: UIViewController {
     @IBAction func onMenuTap(sender: UIBarButtonItem) {
         delegate?.profileView(self, didTapMenuButton: sender)
     }
+
+    @IBAction func onTweetsTap(sender: UITapGestureRecognizer) {
+        print("Tweets tapped")
+    }
+
+    @IBAction func onFollowingTap(sender: UITapGestureRecognizer) {
+        print("Following tapped")
+    }
+
+    @IBAction func onFollowersTap(sender: UITapGestureRecognizer) {
+        print("Followers tapped")
+    }
+
 }
 
 extension ProfileViewController: UIScrollViewDelegate {

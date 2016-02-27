@@ -75,6 +75,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="KZv-Db-XuS" firstAttribute="top" secondItem="M1a-FB-wuH" secondAttribute="bottom" id="7tc-dO-DBU"/>
                                             <constraint firstItem="KZv-Db-XuS" firstAttribute="leading" secondItem="sn1-CB-jgx" secondAttribute="leading" constant="8" id="QQb-k2-Ny6"/>
@@ -84,6 +85,9 @@
                                             <constraint firstItem="M1a-FB-wuH" firstAttribute="leading" secondItem="sn1-CB-jgx" secondAttribute="leading" constant="8" id="eMK-Ai-QVo"/>
                                             <constraint firstAttribute="trailing" secondItem="KZv-Db-XuS" secondAttribute="trailing" constant="8" id="scp-fU-0mk"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="aws-ct-Bac" appends="YES" id="bEV-u1-AkO"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiK-x1-cC1" userLabel="Vertical Rule View">
                                         <rect key="frame" x="106" y="0.0" width="1" height="48"/>
@@ -108,6 +112,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="mts-J6-BvW" firstAttribute="leading" secondItem="py3-Aj-be6" secondAttribute="leading" constant="8" id="7WX-pO-XFG"/>
                                             <constraint firstAttribute="trailing" secondItem="fgp-l9-T8N" secondAttribute="trailing" constant="8" id="Aha-o1-BLz"/>
@@ -117,6 +122,9 @@
                                             <constraint firstItem="mts-J6-BvW" firstAttribute="top" secondItem="py3-Aj-be6" secondAttribute="top" constant="8" id="qSX-P0-706"/>
                                             <constraint firstAttribute="bottom" secondItem="fgp-l9-T8N" secondAttribute="bottom" constant="8" id="u4m-TG-VMD"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="0Lw-sr-Fqk" appends="YES" id="oaE-sm-xqD"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C88-vG-leY" userLabel="Vertical Rule View">
                                         <rect key="frame" x="213" y="0.0" width="1" height="48"/>
@@ -141,6 +149,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="QMc-e3-Pln" firstAttribute="leading" secondItem="GC0-2j-UEC" secondAttribute="leading" constant="8" id="FVm-Ah-9hz"/>
                                             <constraint firstAttribute="bottom" secondItem="fxX-Cg-b36" secondAttribute="bottom" constant="8" id="K8H-Gg-kXy"/>
@@ -150,6 +159,9 @@
                                             <constraint firstItem="QMc-e3-Pln" firstAttribute="top" secondItem="GC0-2j-UEC" secondAttribute="top" constant="8" id="uiY-Vi-ba0"/>
                                             <constraint firstAttribute="trailing" secondItem="QMc-e3-Pln" secondAttribute="trailing" constant="8" id="uo2-zf-stK"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="3ak-6n-Yt2" appends="YES" id="2oK-DB-VhC"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -181,10 +193,15 @@
                                     <constraint firstAttribute="height" constant="1" id="ax3-GE-Jz5"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ilq-nq-IsC">
+                                <rect key="frame" x="0.0" y="274" width="320" height="294"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZtN-aM-UJq" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="2VG-bD-Z0D"/>
+                            <constraint firstItem="hpA-dF-Kqb" firstAttribute="top" secondItem="ilq-nq-IsC" secondAttribute="bottom" id="6BS-bn-S11"/>
                             <constraint firstItem="XUS-3E-nGe" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="Chk-lA-oNx"/>
                             <constraint firstItem="CkB-fQ-SdM" firstAttribute="top" secondItem="eb6-R4-gKA" secondAttribute="bottom" id="F38-1k-wlb"/>
                             <constraint firstItem="uxb-gc-TpF" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="bottom" id="FHH-YO-nI0"/>
@@ -196,11 +213,14 @@
                             <constraint firstItem="e0u-90-sCV" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="Psr-ww-IHD"/>
                             <constraint firstAttribute="trailing" secondItem="XUS-3E-nGe" secondAttribute="trailing" id="W7S-nZ-j6n"/>
                             <constraint firstItem="XUS-3E-nGe" firstAttribute="top" secondItem="ckQ-1G-QRa" secondAttribute="bottom" id="W8T-YE-mCP"/>
+                            <constraint firstItem="ilq-nq-IsC" firstAttribute="leading" secondItem="RVa-3l-UCz" secondAttribute="leading" id="ZvU-Cs-Mln"/>
                             <constraint firstAttribute="trailing" secondItem="uxb-gc-TpF" secondAttribute="trailing" id="fKD-w2-A81"/>
                             <constraint firstItem="ZtN-aM-UJq" firstAttribute="top" secondItem="XUS-3E-nGe" secondAttribute="bottom" id="gaJ-c9-rUV"/>
                             <constraint firstAttribute="trailing" secondItem="CkB-fQ-SdM" secondAttribute="trailing" id="ge0-Wq-D33"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerY" secondItem="QXg-Ih-PYd" secondAttribute="centerY" id="i2O-iw-S2f"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="bottom" secondItem="CkB-fQ-SdM" secondAttribute="bottom" id="jSy-tS-G4f"/>
+                            <constraint firstAttribute="trailing" secondItem="ilq-nq-IsC" secondAttribute="trailing" id="olH-dE-abA"/>
+                            <constraint firstItem="ilq-nq-IsC" firstAttribute="top" secondItem="ZtN-aM-UJq" secondAttribute="bottom" constant="1" id="sBc-76-OyG"/>
                             <constraint firstAttribute="trailing" secondItem="ZtN-aM-UJq" secondAttribute="trailing" id="uDP-WD-2lW"/>
                             <constraint firstItem="ckQ-1G-QRa" firstAttribute="centerX" secondItem="QXg-Ih-PYd" secondAttribute="centerX" id="yZP-Cs-RRc"/>
                         </constraints>
@@ -223,6 +243,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaM-hM-QhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aws-ct-Bac" userLabel="Tweets Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="onTweetsTap:" destination="k7A-L1-3bV" id="tx2-WI-gp7"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="0Lw-sr-Fqk" userLabel="Following Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="onFollowingTap:" destination="k7A-L1-3bV" id="zC6-4n-2pF"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3ak-6n-Yt2" userLabel="Followers Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="onFollowersTap:" destination="k7A-L1-3bV" id="xAg-8g-sGi"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="725" y="499"/>
         </scene>
