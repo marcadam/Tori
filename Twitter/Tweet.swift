@@ -18,6 +18,7 @@ class Tweet {
     var createdAt: NSDate?
     var retweetCount: Int?
     var retweetedStatus: NSDictionary?
+    var retweetedTweet: Tweet?
     var favoriteCount: Int?
     var retweeted: Bool?
     var favorited: Bool?
@@ -37,6 +38,7 @@ class Tweet {
         retweetCount = dictionary["retweet_count"] as? Int
 
         if let retweetedStatus = dictionary["retweeted_status"] as? NSDictionary {
+            retweetedTweet = Tweet(dictionary: retweetedStatus)
             favoriteCount = retweetedStatus["favorite_count"] as? Int
         } else {
             favoriteCount = dictionary["favorite_count"] as? Int
