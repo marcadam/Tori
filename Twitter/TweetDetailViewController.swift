@@ -50,6 +50,7 @@ extension TweetDetailViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("TweetDetailCell") as! TweetDetailCell
+            cell.delegate = self
             cell.tweet = tweet
             return cell
         } else if indexPath.row == 1 {
@@ -62,6 +63,16 @@ extension TweetDetailViewController: UITableViewDataSource, UITableViewDelegate 
             cell.tweet = tweet
             return cell
         }
+    }
+}
+
+extension TweetDetailViewController: TweetDetailCellDelegate {
+    func tweetCell(cell: TweetDetailCell, didTapProfileButton button: UIButton) {
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let profileVC = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        profileVC.user = tweet!.user
+        profileVC.hidesMenuButton = true
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 

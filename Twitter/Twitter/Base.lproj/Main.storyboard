@@ -222,14 +222,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eCb-eb-oEw">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWf-U1-aOK">
                                                     <rect key="frame" x="16" y="8" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="Cv1-RE-0o5"/>
-                                                        <constraint firstAttribute="width" constant="50" id="MmJ-oe-UAM"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="lgR-MB-BbB"/>
+                                                        <constraint firstAttribute="width" constant="50" id="96n-wC-ZcZ"/>
+                                                        <constraint firstAttribute="height" constant="50" id="VP8-br-61R"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <connections>
+                                                        <action selector="onProfileImageTap:" destination="G3x-O4-BeK" eventType="touchUpInside" id="tnC-sC-ija"/>
+                                                    </connections>
+                                                </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roh-He-K0b" userLabel="Name Container">
                                                     <rect key="frame" x="74" y="16" width="230" height="34"/>
                                                     <subviews>
@@ -278,23 +281,23 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="QL3-yu-TTR" secondAttribute="trailing" constant="8" id="1E6-w6-3RW"/>
+                                                <constraint firstItem="roh-He-K0b" firstAttribute="centerY" secondItem="kWf-U1-aOK" secondAttribute="centerY" id="8HM-Lv-B2k"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="88E-Qu-fIU" secondAttribute="bottom" constant="8" id="CZg-eL-ui0"/>
                                                 <constraint firstItem="QL3-yu-TTR" firstAttribute="leading" secondItem="bwM-Lt-nvk" secondAttribute="leadingMargin" constant="8" id="Gac-tf-bIY"/>
-                                                <constraint firstItem="eCb-eb-oEw" firstAttribute="leading" secondItem="bwM-Lt-nvk" secondAttribute="leadingMargin" constant="8" id="HQJ-u6-9Jk"/>
-                                                <constraint firstItem="eCb-eb-oEw" firstAttribute="top" secondItem="bwM-Lt-nvk" secondAttribute="top" constant="8" id="JYi-p4-L15"/>
-                                                <constraint firstItem="QL3-yu-TTR" firstAttribute="top" secondItem="eCb-eb-oEw" secondAttribute="bottom" constant="8" id="TYR-g8-K5f"/>
+                                                <constraint firstItem="roh-He-K0b" firstAttribute="leading" secondItem="kWf-U1-aOK" secondAttribute="trailing" constant="8" id="PaP-29-e5L"/>
+                                                <constraint firstItem="kWf-U1-aOK" firstAttribute="top" secondItem="bwM-Lt-nvk" secondAttribute="top" constant="8" id="R11-lw-D6r"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="88E-Qu-fIU" secondAttribute="trailing" constant="8" id="a5N-Dz-a3T"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="roh-He-K0b" secondAttribute="trailing" constant="8" id="ekX-QE-Zxe"/>
                                                 <constraint firstItem="88E-Qu-fIU" firstAttribute="leading" secondItem="bwM-Lt-nvk" secondAttribute="leadingMargin" constant="8" id="hNj-9g-g8z"/>
-                                                <constraint firstItem="roh-He-K0b" firstAttribute="leading" secondItem="eCb-eb-oEw" secondAttribute="trailing" constant="8" id="tyy-Lj-NjG"/>
+                                                <constraint firstItem="kWf-U1-aOK" firstAttribute="leading" secondItem="bwM-Lt-nvk" secondAttribute="leading" constant="16" id="ivQ-6h-eXN"/>
                                                 <constraint firstItem="88E-Qu-fIU" firstAttribute="top" secondItem="QL3-yu-TTR" secondAttribute="bottom" constant="6" id="vB6-5k-svd"/>
-                                                <constraint firstItem="roh-He-K0b" firstAttribute="centerY" secondItem="eCb-eb-oEw" secondAttribute="centerY" id="vcb-p4-nrW"/>
+                                                <constraint firstItem="QL3-yu-TTR" firstAttribute="top" secondItem="kWf-U1-aOK" secondAttribute="bottom" constant="8" id="xI5-vV-Uwz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="createdAtLabel" destination="88E-Qu-fIU" id="hdy-lV-0sO"/>
                                             <outlet property="nameLabel" destination="YZb-Ag-Cu1" id="HXX-Nr-1lm"/>
-                                            <outlet property="profileImageView" destination="eCb-eb-oEw" id="whk-kl-Hkh"/>
+                                            <outlet property="profileImageButton" destination="kWf-U1-aOK" id="4wx-Lz-Ytc"/>
                                             <outlet property="screenNameLabel" destination="9Rs-Q6-tsV" id="C8G-OU-bpw"/>
                                             <outlet property="tweetTextLabel" destination="QL3-yu-TTR" id="ToS-50-IjK"/>
                                         </connections>

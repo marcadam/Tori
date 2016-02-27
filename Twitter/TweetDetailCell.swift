@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol TweetDetailCellDelegate: class {
+    func tweetCell(cell: TweetDetailCell, didTapProfileButton button: UIButton)
+}
+
 class TweetDetailCell: UITableViewCell {
 
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
@@ -25,23 +29,29 @@ class TweetDetailCell: UITableViewCell {
             }
             tweetTextLabel.text = tweet.text
             if let profileImageURL = tweet.user?.profileImageURL {
-                profileImageView.setImageWithURL(NSURL(string: profileImageURL)!)
+                profileImageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: profileImageURL)!)
             }
             createdAtLabel.text = tweet.createdAtStringMedium
         }
     }
 
+    weak var delegate: TweetDetailCellDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        profileImageView.layer.cornerRadius = 5
-        profileImageView.clipsToBounds = true
+        profileImageButton.layer.cornerRadius = 5
+        profileImageButton.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    @IBAction func onProfileImageTap(sender: UIButton) {
+        delegate?.tweetCell(self, didTapProfileButton: sender)
     }
 
 }
