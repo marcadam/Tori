@@ -80,7 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func userDidLogout() {
         let vc = loginStoryboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        window?.rootViewController = vc
+        UIView.transitionWithView(window!,
+            duration: 0.3,
+            options: .TransitionFlipFromLeft,
+            animations: { () -> Void in
+                self.window?.rootViewController = vc
+            },
+            completion: nil
+        )
     }
 }
 
