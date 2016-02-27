@@ -34,7 +34,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             scope: nil,
             success: { (requestToken: BDBOAuth1Credential!) -> Void in
                 // print("Got the request token!")
-                let authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token )")!
+                let authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")!
                 UIApplication.sharedApplication().openURL(authURL)
             },
             failure: { (error: NSError!) -> Void in
