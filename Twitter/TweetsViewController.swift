@@ -15,6 +15,8 @@ protocol TweetsViewControllerDelegate: class {
 
 class TweetsViewController: UIViewController {
 
+    let tweetCellID = "com.marcadam.TweetCell"
+
     @IBOutlet weak var tableView: UITableView!
 
     var tweets: [Tweet]?
@@ -27,6 +29,8 @@ class TweetsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let cellNib = UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(cellNib, forCellReuseIdentifier: tweetCellID)
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -49,16 +53,6 @@ class TweetsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "tweetDetailSegue" {
-            let tdvc = segue.destinationViewController as! TweetDetailViewController
-            tdvc.delegate = self
-            tdvc.containerViewController = containerViewController
-            let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)!
-            tdvc.tweet = tweets![indexPath.row]
-        }
     }
 
     func fetchTweets() {
@@ -122,13 +116,19 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(tweetCellID, forIndexPath: indexPath) as! TweetCell
         cell.delegate = self
         cell.tweet = tweets![indexPath.row]
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tweetDetailVC = storyboard.instantiateViewControllerWithIdentifier("TweetDetailViewController") as! TweetDetailViewController
+        tweetDetailVC.delegate = self
+        tweetDetailVC.containerViewController = containerViewController
+        tweetDetailVC.tweet = tweets![indexPath.row]
+        navigationController?.pushViewController(tweetDetailVC, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
