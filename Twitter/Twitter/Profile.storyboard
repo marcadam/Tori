@@ -237,14 +237,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="followersContainerView" destination="GC0-2j-UEC" id="aYT-Ya-7um"/>
                         <outlet property="followersCountLabel" destination="QMc-e3-Pln" id="W0K-5w-4lZ"/>
+                        <outlet property="followersLabel" destination="fxX-Cg-b36" id="KEe-Iz-qLx"/>
+                        <outlet property="followingContainerView" destination="py3-Aj-be6" id="e8e-Cq-1vi"/>
                         <outlet property="followingCountLabel" destination="mts-J6-BvW" id="uuB-yq-OqS"/>
+                        <outlet property="followingLabel" destination="fgp-l9-T8N" id="lex-4J-Ka3"/>
                         <outlet property="headerImage" destination="e0u-90-sCV" id="ZRr-DN-87Q"/>
                         <outlet property="headerScrollView" destination="CkB-fQ-SdM" id="b6p-Mn-23Q"/>
                         <outlet property="pageControl" destination="ckQ-1G-QRa" id="0by-gV-I7U"/>
                         <outlet property="pageControlBackingView" destination="QXg-Ih-PYd" id="adW-11-2sZ"/>
                         <outlet property="tableView" destination="ilq-nq-IsC" id="RlS-La-HBG"/>
-                        <outlet property="tweetCountLabel" destination="M1a-FB-wuH" id="MQo-x1-0Wc"/>
+                        <outlet property="tweetsContainerView" destination="sn1-CB-jgx" id="Ban-Z4-QWv"/>
+                        <outlet property="tweetsCountLabel" destination="M1a-FB-wuH" id="LYJ-sx-iUY"/>
+                        <outlet property="tweetsLabel" destination="KZv-Db-XuS" id="0iP-SD-dhs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaM-hM-QhK" userLabel="First Responder" sceneMemberID="firstResponder"/>

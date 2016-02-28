@@ -23,9 +23,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageControlBackingView: UIView!
-    @IBOutlet weak var tweetCountLabel: UILabel!
+    @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var tweetsLabel: UILabel!
+    @IBOutlet weak var tweetsContainerView: UIView!
     @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followingContainerView: UIView!
     @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var followersContainerView: UIView!
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -35,7 +41,33 @@ class ProfileViewController: UIViewController {
     var hidesMenuButton = false
     let tweetCellID = "com.marcadam.TweetCell"
     let userCellID = "com.marcadam.UserCell"
-    var tableDisplayMode: TableDisplayMode = .Tweets
+    var tableDisplayMode: TableDisplayMode = .Tweets {
+        didSet {
+            switch tableDisplayMode {
+            case .Tweets:
+                tweetsLabel.textColor = UIColor.whiteColor()
+                tweetsContainerView.backgroundColor = Color.twitterBlue
+                followingLabel.textColor = UIColor.lightGrayColor()
+                followingContainerView.backgroundColor = UIColor.whiteColor()
+                followersLabel.textColor = UIColor.lightGrayColor()
+                followersContainerView.backgroundColor = UIColor.whiteColor()
+            case .Following:
+                tweetsLabel.textColor = UIColor.lightGrayColor()
+                tweetsContainerView.backgroundColor = UIColor.whiteColor()
+                followingLabel.textColor = UIColor.whiteColor()
+                followingContainerView.backgroundColor = Color.twitterBlue
+                followersLabel.textColor = UIColor.lightGrayColor()
+                followersContainerView.backgroundColor = UIColor.whiteColor()
+            case .Followers:
+                tweetsLabel.textColor = UIColor.lightGrayColor()
+                tweetsContainerView.backgroundColor = UIColor.whiteColor()
+                followingLabel.textColor = UIColor.lightGrayColor()
+                followingContainerView.backgroundColor = UIColor.whiteColor()
+                followersLabel.textColor = UIColor.whiteColor()
+                followersContainerView.backgroundColor = Color.twitterBlue
+            }
+        }
+    }
 
     weak var delegate: ProfileViewControllerDelegate?
 
@@ -67,7 +99,7 @@ class ProfileViewController: UIViewController {
         profileDescriptionView.user = user
 
         if let tweetCount = user?.statusesCount {
-            tweetCountLabel.text = "\(tweetCount)"
+            tweetsCountLabel.text = "\(tweetCount)"
         }
         if let followingCount = user?.followingCount {
             followingCountLabel.text = "\(followingCount)"
@@ -118,6 +150,10 @@ class ProfileViewController: UIViewController {
             self.tableView.reloadData()
             refreshControll.endRefreshing()
         }
+    }
+
+    func updateTableDisplayModeIndicator() {
+
     }
 
     @IBAction func pageControlDidPage(sender: UIPageControl) {
