@@ -66,6 +66,7 @@ class MenuTableViewController: UITableViewController {
                 Utils.configureDefaultNavigationBar(accountNC.navigationBar)
                 let accountVC = accountNC.topViewController as! AccountViewController
                 accountVC.delegate = containerViewController
+                accountVC.containerViewController = containerViewController
                 containerViewController.contentViewController = accountNC
             }
         }

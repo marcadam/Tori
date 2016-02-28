@@ -18,6 +18,8 @@ class AccountViewController: UIViewController {
 
     let userCellID = "com.marcadam.UserCell"
 
+    var containerViewController: ContainerViewController!
+
     weak var delegate: AccountViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -63,6 +65,12 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            let storyboard = UIStoryboard(name: "Account", bundle: nil)
+            let accountVC = storyboard.instantiateViewControllerWithIdentifier("AddAccountViewController")
+            containerViewController.presentViewController(accountVC, animated: true, completion: nil)
+        }
+
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
