@@ -15,6 +15,10 @@ protocol ProfileViewControllerDelegate: class {
 
 class ProfileViewController: UIViewController {
 
+    enum TableDisplayMode {
+        case Tweets, Following, Followers
+    }
+
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var headerScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -27,8 +31,11 @@ class ProfileViewController: UIViewController {
 
     var user: User?
     var tweets: [Tweet]?
+    var users: [User]?
     var hidesMenuButton = false
     let tweetCellID = "com.marcadam.TweetCell"
+    let userCellID = "com.marcadam.UserCell"
+    var tableDisplayMode: TableDisplayMode = .Tweets
 
     weak var delegate: ProfileViewControllerDelegate?
 
@@ -72,9 +79,12 @@ class ProfileViewController: UIViewController {
         headerScrollView.addSubview(profileHeaderView)
         headerScrollView.addSubview(profileDescriptionView)
 
-        let cellNib = UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle())
-        tableView.registerNib(cellNib, forCellReuseIdentifier: tweetCellID)
-        tableView.estimatedRowHeight = 100.0
+        let tweetCellNib = UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(tweetCellNib, forCellReuseIdentifier: tweetCellID)
+        let userCellNIB = UINib(nibName: "UserCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(userCellNIB, forCellReuseIdentifier: userCellID)
+
+        tableView.estimatedRowHeight = 80.0
         tableView.rowHeight = UITableViewAutomaticDimension
 
         let refreshControll = UIRefreshControl()
@@ -94,6 +104,7 @@ class ProfileViewController: UIViewController {
         let params: NSDictionary = ["user_id": (user?.userID)!]
         TwitterClient.sharedInstance.userTimelineWithParams(params) { (tweets, error) -> Void in
             MBProgressHUD.hideHUDForView(self.view, animated: true)
+            self.tableDisplayMode = .Tweets
             self.tweets = tweets
             self.tableView.reloadData()
         }
@@ -102,6 +113,7 @@ class ProfileViewController: UIViewController {
     func refreshTweets(refreshControll: UIRefreshControl) {
         let params: NSDictionary = ["user_id": (user?.userID)!]
         TwitterClient.sharedInstance.userTimelineWithParams(params) { (tweets, error) -> Void in
+            self.tableDisplayMode = .Tweets
             self.tweets = tweets
             self.tableView.reloadData()
             refreshControll.endRefreshing()
@@ -118,31 +130,63 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func onTweetsTap(sender: UITapGestureRecognizer) {
-        print("Tweets tapped")
+        fetchTweets()
     }
 
     @IBAction func onFollowingTap(sender: UITapGestureRecognizer) {
-        print("Following tapped")
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let params: NSDictionary = ["user_id": (user?.userID)!]
+        TwitterClient.sharedInstance.followingWithParams(params) { (users, error) -> Void in
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            self.tableDisplayMode = .Following
+            self.users = users
+            self.tableView.reloadData()
+        }
     }
 
     @IBAction func onFollowersTap(sender: UITapGestureRecognizer) {
-        print("Followers tapped")
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let params: NSDictionary = ["user_id": (user?.userID)!]
+        TwitterClient.sharedInstance.followersWithParams(params) { (users, error) -> Void in
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            self.tableDisplayMode = .Followers
+            self.users = users
+            self.tableView.reloadData()
+        }
     }
 
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tweets = tweets where tweets.count > 0 {
-            return tweets.count
-        } else {
-            return 0
+
+        switch tableDisplayMode {
+        case .Tweets:
+            if let tweets = tweets where tweets.count > 0 {
+                return tweets.count
+            } else {
+                return 0
+            }
+        case .Following, .Followers:
+            if let users = users where users.count > 0 {
+                return users.count
+            } else {
+                return 0
+            }
         }
+
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(tweetCellID, forIndexPath: indexPath) as! TweetCell
-        cell.tweet = tweets![indexPath.row]
-        return cell
+        switch tableDisplayMode {
+        case .Tweets:
+            let cell = tableView.dequeueReusableCellWithIdentifier(tweetCellID, forIndexPath: indexPath) as! TweetCell
+            cell.tweet = tweets![indexPath.row]
+            return cell
+        case .Following, .Followers:
+            let cell = tableView.dequeueReusableCellWithIdentifier(userCellID, forIndexPath: indexPath) as! UserCell
+            cell.user = users![indexPath.row]
+            return cell
+        }
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

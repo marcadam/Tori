@@ -145,6 +145,41 @@ class TwitterClient: BDBOAuth1SessionManager {
         )
     }
 
+    func followingWithParams(params: NSDictionary?, completion: (users: [User]?, error: NSError?) -> Void) {
+        getUsersWithParams(params, forEndpoint: "1.1/friends/ids.json", completion: completion)
+    }
+
+    func followersWithParams(params: NSDictionary?, completion: (users: [User]?, error: NSError?) -> Void) {
+        getUsersWithParams(params, forEndpoint: "1.1/followers/ids.json", completion: completion)
+    }
+
+    private func getUsersWithParams(params: NSDictionary?, forEndpoint endpoint: String, completion: (users: [User]?, error: NSError?) -> Void) {
+        GET(endpoint,
+            parameters: params,
+            progress: nil,
+            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                var userIDs = (response as! NSDictionary)["ids"] as! [Int]
+                userIDs = userIDs.count <= 20 ? userIDs : Array(userIDs[0..<19])
+                let topIDsString = userIDs.map({"\($0)"}).joinWithSeparator(",")
+                self.GET("1.1/users/lookup.json",
+                    parameters: ["user_id": topIDsString],
+                    progress: nil,
+                    success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                        let users = User.usersWithArray(response as! [NSDictionary])
+                        completion(users: users, error: nil)
+                    },
+                    failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                        print("Error getting users.")
+                    }
+                )
+            },
+            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting following IDs.")
+                completion(users: nil, error: error)
+            }
+        )
+    }
+
     func openURL(url: NSURL) {
         fetchAccessTokenWithPath("oauth/access_token",
             method: "POST",
