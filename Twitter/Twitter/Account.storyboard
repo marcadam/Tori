@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Account View Controller-->
+        <!--Accounts-->
         <scene sceneID="8AD-cN-UgX">
             <objects>
                 <viewController storyboardIdentifier="AccountViewController" id="qOq-dj-CSq" customClass="AccountViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,9 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="X3e-zU-yJV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="446"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddAccountCell" id="lFF-DF-qRG">
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFF-DF-qRG" id="OEZ-ST-z6I">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Existing Account..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZI-a5-MKV">
+                                                    <rect key="frame" x="8" y="13" width="304" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qOq-dj-CSq" id="dEg-7t-NoX"/>
+                                    <outlet property="delegate" destination="qOq-dj-CSq" id="Ve8-Mi-R7o"/>
+                                </connections>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irq-SW-HXc">
-                                <rect key="frame" x="136" y="269" width="48" height="30"/>
-                                <state key="normal" title="Logout"/>
+                                <rect key="frame" x="20" y="518" width="280" height="30"/>
+                                <state key="normal" title="Logout Current User"/>
                                 <connections>
                                     <action selector="onLogout:" destination="qOq-dj-CSq" eventType="touchUpInside" id="4G7-TI-gYg"/>
                                 </connections>
@@ -27,17 +53,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerY" secondItem="d4S-KE-RXW" secondAttribute="centerY" id="0EP-VJ-Q5F"/>
-                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerX" secondItem="d4S-KE-RXW" secondAttribute="centerX" id="OzR-Tp-MWK"/>
+                            <constraint firstAttribute="trailing" secondItem="X3e-zU-yJV" secondAttribute="trailing" id="6Dx-10-hfx"/>
+                            <constraint firstAttribute="trailing" secondItem="irq-SW-HXc" secondAttribute="trailing" constant="20" id="AXX-FY-ThG"/>
+                            <constraint firstItem="irq-SW-HXc" firstAttribute="leading" secondItem="d4S-KE-RXW" secondAttribute="leading" constant="20" id="Phu-Ww-iaD"/>
+                            <constraint firstItem="X3e-zU-yJV" firstAttribute="top" secondItem="tn5-YE-wHi" secondAttribute="bottom" id="S1L-V2-eWW"/>
+                            <constraint firstItem="X3e-zU-yJV" firstAttribute="leading" secondItem="d4S-KE-RXW" secondAttribute="leading" id="ern-47-W0C"/>
+                            <constraint firstItem="3Hv-rk-Qhr" firstAttribute="top" secondItem="irq-SW-HXc" secondAttribute="bottom" constant="20" id="w1S-kT-9nB"/>
+                            <constraint firstItem="irq-SW-HXc" firstAttribute="top" secondItem="X3e-zU-yJV" secondAttribute="bottom" constant="8" id="xqg-cE-fuf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="7gr-0A-Adn">
+                    <navigationItem key="navigationItem" title="Accounts" id="7gr-0A-Adn">
                         <barButtonItem key="leftBarButtonItem" image="Menu" id="yaj-Bj-UZb">
                             <connections>
                                 <action selector="onMenuTap:" destination="qOq-dj-CSq" id="hSe-OY-4q5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="X3e-zU-yJV" id="pib-xy-F4x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qkr-pF-IPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

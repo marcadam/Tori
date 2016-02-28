@@ -14,12 +14,18 @@ protocol AccountViewControllerDelegate: class {
 
 class AccountViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+
+    let userCellID = "com.marcadam.UserCell"
+
     weak var delegate: AccountViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let userCellNIB = UINib(nibName: "UserCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(userCellNIB, forCellReuseIdentifier: userCellID)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,5 +39,30 @@ class AccountViewController: UIViewController {
 
     @IBAction func onLogout(sender: UIButton) {
         User.currentUser?.logout()
+    }
+}
+
+extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(userCellID, forIndexPath: indexPath) as! UserCell
+            cell.user = User.currentUser
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("AddAccountCell")!
+            return cell
+        }
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
