@@ -96,7 +96,7 @@ class ContainerViewController: UIViewController {
     }
 }
 
-extension ContainerViewController: TweetsViewControllerDelegate, ProfileViewControllerDelegate {
+extension ContainerViewController: TweetsViewControllerDelegate, ProfileViewControllerDelegate, AccountViewControllerDelegate {
     private func toggleMenu() {
         originalContentViewLeadingConstraint = contentViewLeadingConstraint.constant
         UIView.animateWithDuration(0.3, animations: { () -> Void in
@@ -116,6 +116,10 @@ extension ContainerViewController: TweetsViewControllerDelegate, ProfileViewCont
     }
 
     func profileView(profileView: ProfileViewController, didTapMenuButton: UIBarButtonItem) {
+        toggleMenu()
+    }
+
+    func accountView(accountView: AccountViewController, didTapMenuButton: UIBarButtonItem) {
         toggleMenu()
     }
 }

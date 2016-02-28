@@ -27,14 +27,42 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerY" secondItem="d4S-KE-RXW" secondAttribute="centerY" id="Pw0-bB-b5Z"/>
-                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerX" secondItem="d4S-KE-RXW" secondAttribute="centerX" id="nWn-Ib-1WB"/>
+                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerY" secondItem="d4S-KE-RXW" secondAttribute="centerY" id="0EP-VJ-Q5F"/>
+                            <constraint firstItem="irq-SW-HXc" firstAttribute="centerX" secondItem="d4S-KE-RXW" secondAttribute="centerX" id="OzR-Tp-MWK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7gr-0A-Adn">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="yaj-Bj-UZb">
+                            <connections>
+                                <action selector="onMenuTap:" destination="qOq-dj-CSq" id="hSe-OY-4q5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qkr-pF-IPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="652" y="-33"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="srw-om-Lm9">
+            <objects>
+                <navigationController storyboardIdentifier="AccountNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="TZN-Vo-b20" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2MG-u5-HJp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qOq-dj-CSq" kind="relationship" relationship="rootViewController" id="beJ-Sz-qw3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="leF-dI-i6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="205" y="-33"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Menu" width="21" height="18"/>
+    </resources>
 </document>

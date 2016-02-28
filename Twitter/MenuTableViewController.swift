@@ -55,15 +55,18 @@ class MenuTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 let profileNC = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
+                Utils.configureDefaultNavigationBar(profileNC.navigationBar)
                 let profileVC = profileNC.topViewController as! ProfileViewController
                 profileVC.delegate = containerViewController
                 profileVC.user = User.currentUser
-                Utils.configureDefaultNavigationBar(profileNC.navigationBar)
                 containerViewController.contentViewController = profileNC
             } else if indexPath.row == 1 {
                 let storyboard = UIStoryboard(name: "Account", bundle: nil)
-                let accountVC = storyboard.instantiateViewControllerWithIdentifier("AccountViewController") as! AccountViewController
-                containerViewController.contentViewController = accountVC
+                let accountNC = storyboard.instantiateViewControllerWithIdentifier("AccountNavigationController") as! UINavigationController
+                Utils.configureDefaultNavigationBar(accountNC.navigationBar)
+                let accountVC = accountNC.topViewController as! AccountViewController
+                accountVC.delegate = containerViewController
+                containerViewController.contentViewController = accountNC
             }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
