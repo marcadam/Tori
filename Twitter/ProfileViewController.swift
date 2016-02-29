@@ -152,10 +152,6 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    func updateTableDisplayModeIndicator() {
-
-    }
-
     @IBAction func pageControlDidPage(sender: UIPageControl) {
         let xOffset = headerScrollView.bounds.width * CGFloat(pageControl.currentPage)
         headerScrollView.setContentOffset(CGPointMake(xOffset,0) , animated: true)
