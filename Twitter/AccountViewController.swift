@@ -66,9 +66,10 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            let storyboard = UIStoryboard(name: "Account", bundle: nil)
-            let accountVC = storyboard.instantiateViewControllerWithIdentifier("AddAccountViewController")
-            containerViewController.presentViewController(accountVC, animated: true, completion: nil)
+            // let storyboard = UIStoryboard(name: "Account", bundle: nil)
+            // let accountVC = storyboard.instantiateViewControllerWithIdentifier("AddAccountViewController")
+            // containerViewController.presentViewController(accountVC, animated: true, completion: nil)
+            User.currentUser?.logout()
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
