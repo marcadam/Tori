@@ -1,6 +1,4 @@
-# Project 3 - Twitter
-
-**Name of your app** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
+# Project 4 - Tori
 
 Time spent: 26 hours spent in total
 
@@ -8,39 +6,55 @@ Time spent: 26 hours spent in total
 
 The following **required** functionality is completed:
 
-- [x] User can sign in using OAuth login flow.
-- [x] User can view last 20 tweets from their home timeline.
-- [x] The current signed in user will be persisted across restarts.
-- [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.  In other words, design the custom cell with the proper Auto Layout settings. You will also need to augment the model classes.
-- [x] User can pull to refresh.
-- [x] User can compose a new tweet by tapping on a compose button.
-- [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [x] Hamburger menu
+   - [x] Dragging anywhere in the view should reveal the menu.
+   - [x] The menu should include links to your profile, the home timeline, and the mentions view.
+   - [x] The menu can look similar to the example or feel free to take liberty with the UI.
+- [x] Profile page
+   - [x] Contains the user header view
+   - [x] Contains a section with the users basic stats: # tweets, # following, # followers
+- [x] Home Timeline
+   - [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
-- [x] When composing, you should have a countdown in the upper right for the tweet limit.
-- [x] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [x] Retweeting and favoriting should increment the retweet and favorite count.
-- [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
-- [x] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [x] Profile Page
+   - [x] Implement the paging view for the user description.
+   - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+   - [ ] Pulling down the profile page should blur and resize the header image.
+- [ ] Account switching
+   - [ ] Long press on tab bar to bring up Account view with animation
+   - [ ] Tap account to switch to
+   - [ ] Include a plus button to Add an Account
+   - [ ] Swipe to delete an account
+
 
 The following **additional** features are implemented:
+- [x] UI/UX
+   - [x] Added icons for menu and new tweet
+   - [x] Tap hamburger icon to open and close menu
+   - [x] Animate logout
+   - [x] Display user tweets in profile scene (tap stat to see)
+   - [x] Display followers in profile scene (tap stat to see)
+   - [x] Display following (friends) in profile scene (tap stat to see)
+   - [x] Improved look of login scene
+   - [x] Created custom app logo and icon
+   - [x] Profile layout was implemented to ensure that the user can read the user name, screen name, description regardless ot the background color of their banner image. I intended to use the `profile_text_color` value, but realized that few users set it. CodePath, for example, uses a dark banner image, but also has their `profile_text_color` set to black. While other Twitter users have light or white banner images. So there was no easy way to ensure the text was readable without some kind of background. I also wanted to make sure the page controll was visible, other wise the user would not know to page to see the description.
+- [x] Code/architecture
+   - [x] Created custom views for profile header and description
+   - [x] Refactor tweet table view cell into XIB for reuse on profile scene
 
-- [x] Disable tweet button when there is no text or when there is too much text.
-- [x] Disable retweet button and display a diferent icon when the tweet is from the logged in user.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. When you upate counts on things like retweets or favorites/likes is it best to just make changes to your local copies and revert if the request failed? Or is it better to update the UI after you get back the successful response? I went with the former thinking it seemed odd if I favorite/like a tweet and then see the count go up by more than one (due to others liking it).
-2. Best practices for delegate patern vs notifications.
-3. Best practices for constructing/naming delegate methods.
+  1. How did people implement adding and persisting multiple Twitter accounts
+  2. Correct way to set constraints or set dimension after device rotation (espicially in ragard to scroll view with paging content size).
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![Walk-through Video](twitter_walkthrough.gif)
+![Walk-through Video](tori_walkthrough.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
