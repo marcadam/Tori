@@ -11,9 +11,13 @@ import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        loginButton.backgroundColor = Color.twitterBlue
     }
 
     override func didReceiveMemoryWarning() {

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--ContainerViewController-->
@@ -25,9 +26,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ag-e5-lef">
-                                <rect key="frame" x="99" y="269" width="122" height="30"/>
-                                <state key="normal" title="Login with Twitter"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tori" translatesAutoresizingMaskIntoConstraints="NO" id="0S6-mD-3FC">
+                                <rect key="frame" x="30" y="64" width="260" height="221"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0S6-mD-3FC" secondAttribute="height" multiplier="20:17" id="shl-Zz-ncb"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ag-e5-lef">
+                                <rect key="frame" x="30" y="320" width="260" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login with Twitter">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BUo-gx-bF2"/>
                                 </connections>
@@ -35,17 +45,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2ag-e5-lef" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cQA-xl-INP"/>
-                            <constraint firstItem="2ag-e5-lef" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zv1-fa-8iM"/>
+                            <constraint firstAttribute="trailing" secondItem="0S6-mD-3FC" secondAttribute="trailing" constant="30" id="KeO-BZ-KSo"/>
+                            <constraint firstItem="0S6-mD-3FC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="OiR-ub-1gf"/>
+                            <constraint firstItem="0S6-mD-3FC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="QlI-v5-xQo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="2ag-e5-lef" id="Gjt-ME-WZh"/>
                         <segue destination="qp6-bB-BMF" kind="modal" identifier="loginSegue" modalTransitionStyle="flipHorizontal" id="fW2-X5-I5S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="199.46666666666667" y="610.12666666666667"/>
+            <point key="canvasLocation" x="199" y="610"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Tori" width="130" height="110"/>
+    </resources>
 </document>
