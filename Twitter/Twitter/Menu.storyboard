@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Menu-->
+        <!--Menu Table View Controller-->
         <scene sceneID="tWz-Q8-NpO">
             <objects>
                 <tableViewController storyboardIdentifier="MenuTableViewController" id="blH-NX-NB1" customClass="MenuTableViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,7 +104,7 @@
                             <outlet property="delegate" destination="blH-NX-NB1" id="CJk-ll-7f6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Menu" id="lGz-NI-XAj"/>
+                    <navigationItem key="navigationItem" id="lGz-NI-XAj"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3S-Gy-v20" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
