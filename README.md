@@ -1,7 +1,5 @@
 # Project 4 - Tori
 
-Time spent: 26 hours spent in total
-
 ## User Stories
 
 The following **required** functionality is completed:
