@@ -37,7 +37,7 @@ The following **additional** features are implemented:
    - [x] Display following (friends) in profile scene (tap stat to see)
    - [x] Improved look of login scene
    - [x] Created custom app logo and icon
-   - [x] Profile layout was implemented to ensure that the user can read the user name, screen name, description regardless ot the background color of their banner image. I intended to use the `profile_text_color` value, but realized that few users set it. CodePath, for example, uses a dark banner image, but also has their `profile_text_color` set to black. While other Twitter users have light or white banner images. So there was no easy way to ensure the text was readable without some kind of background. I also wanted to make sure the page controll was visible, other wise the user would not know to page to see the description.
+   - [x] Profile layout was implemented to ensure that the user can read the user name, screen name, description regardless ot the background color of their banner image. I intended to use the `profile_text_color` value, but realized that few users set it. CodePath, for example, uses a dark banner image, but also has their `profile_text_color` set to black. While other Twitter users have light or white banner images. So there was no easy way to ensure the text was readable without some kind of background. I also wanted to make sure the page controll was visible, otherwise the user would not know to page to see the description.
 - [x] Code/architecture
    - [x] Created custom views for profile header and description
    - [x] Refactor tweet table view cell into XIB for reuse on profile scene
