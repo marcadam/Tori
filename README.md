@@ -42,12 +42,6 @@ The following **additional** features are implemented:
    - [x] Created custom views for profile header and description
    - [x] Refactor tweet table view cell into XIB for reuse on profile scene
 
-
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
-
-  1. How did people implement adding and persisting multiple Twitter accounts
-  2. Correct way to set constraints or set dimension after device rotation (espicially in ragard to scroll view with paging content size).
-
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
