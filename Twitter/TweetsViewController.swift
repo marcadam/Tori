@@ -38,13 +38,13 @@ class TweetsViewController: UIViewController {
 
         if showMentions {
             title = "Mentions"
-            refreshControll.addTarget(self, action: "refreshMentions:", forControlEvents: .ValueChanged)
+            refreshControll.addTarget(self, action: #selector(refreshMentions(_:)), forControlEvents: .ValueChanged)
             tableView.insertSubview(refreshControll, atIndex: 0)
             fetchMentions()
         } else {
             title = "Timeline"
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "insertNewTweet:", name: userDidPostTweetNotification, object: nil)
-            refreshControll.addTarget(self, action: "refreshTweets:", forControlEvents: .ValueChanged)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(insertNewTweet(_:)), name: userDidPostTweetNotification, object: nil)
+            refreshControll.addTarget(self, action: #selector(refreshTweets(_:)), forControlEvents: .ValueChanged)
             tableView.insertSubview(refreshControll, atIndex: 0)
             fetchTweets()
         }

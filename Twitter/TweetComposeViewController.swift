@@ -24,7 +24,7 @@ class TweetComposeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tweetTextDidChange", name: UITextViewTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(tweetTextDidChange), name: UITextViewTextDidChangeNotification, object: nil)
 
         tweetButton.enabled = false
         inReplyToLabel.text = nil

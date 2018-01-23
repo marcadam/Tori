@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userDidLogout), name: userDidLogoutNotification, object: nil)
 
         if User.currentUser != nil {
             let containerVC = containerStoryboard.instantiateViewControllerWithIdentifier("ContainerViewController") as! ContainerViewController

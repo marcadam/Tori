@@ -121,7 +121,7 @@ class ProfileViewController: UIViewController {
 
         let refreshControll = UIRefreshControl()
 
-        refreshControll.addTarget(self, action: "refreshTweets:", forControlEvents: .ValueChanged)
+        refreshControll.addTarget(self, action: #selector(refreshTweets(_:)), forControlEvents: .ValueChanged)
         tableView.insertSubview(refreshControll, atIndex: 0)
         fetchTweets()
     }
