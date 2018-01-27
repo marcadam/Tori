@@ -21,7 +21,7 @@ class AddAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onCancel(sender: UIButton) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onCancel(_ sender: UIButton) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

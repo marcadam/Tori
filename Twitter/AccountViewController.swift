@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccountViewControllerDelegate: class {
-    func accountView(accountView: AccountViewController, didTapMenuButton: UIBarButtonItem)
+    func accountView(_ accountView: AccountViewController, didTapMenuButton: UIBarButtonItem)
 }
 
 class AccountViewController: UIViewController {
@@ -26,8 +26,8 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let userCellNIB = UINib(nibName: "UserCell", bundle: NSBundle.mainBundle())
-        tableView.registerNib(userCellNIB, forCellReuseIdentifier: userCellID)
+        let userCellNIB = UINib(nibName: "UserCell", bundle: Bundle.main)
+        tableView.register(userCellNIB, forCellReuseIdentifier: userCellID)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,36 +35,36 @@ class AccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onMenuTap(sender: UIBarButtonItem) {
+    @IBAction func onMenuTap(_ sender: UIBarButtonItem) {
         delegate?.accountView(self, didTapMenuButton: sender)
     }
 
-    @IBAction func onLogout(sender: UIButton) {
+    @IBAction func onLogout(_ sender: UIButton) {
         User.currentUser?.logout()
     }
 }
 
 extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(userCellID, forIndexPath: indexPath) as! UserCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: userCellID, for: indexPath) as! UserCell
             cell.user = User.currentUser
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("AddAccountCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell")!
             return cell
         }
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             // let storyboard = UIStoryboard(name: "Account", bundle: nil)
             // let accountVC = storyboard.instantiateViewControllerWithIdentifier("AddAccountViewController")
@@ -72,6 +72,6 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             User.currentUser?.logout()
         }
 
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

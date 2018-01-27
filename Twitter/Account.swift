@@ -19,7 +19,7 @@ class Account {
         self.user = user
     }
 
-    class func addAccount(accessToken: String, user: User) {
+    class func addAccount(_ accessToken: String, user: User) {
         Account.accounts.append(Account(accessToken: accessToken, user: user))
     }
 }

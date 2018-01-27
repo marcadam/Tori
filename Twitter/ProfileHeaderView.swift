@@ -22,7 +22,7 @@ class ProfileHeaderView: UIView {
                 nameLabel.text = user.name
                 screenNameLabel.text = "@\(user.screenName!)"
                 if let profileImageURL = user.profileImageURL {
-                    profileImageView.setImageWithURL(NSURL(string: profileImageURL)!)
+                    profileImageView.setImageWith(URL(string: profileImageURL)!)
                 }
             }
         }
@@ -41,14 +41,14 @@ class ProfileHeaderView: UIView {
     func initSubviews() {
         // standard initialization logic
         let nib = UINib(nibName: "ProfileHeaderView", bundle: nil)
-        nib.instantiateWithOwner(self, options: nil)
+        nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
         addSubview(contentView)
 
         // custom initialization logic
         profileImageView.layer.cornerRadius = 6.0
         profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
     }
 

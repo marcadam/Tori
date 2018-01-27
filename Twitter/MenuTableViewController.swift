@@ -23,19 +23,19 @@ class MenuTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+                let tweetsNC = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
                 let tweetsVC = tweetsNC.topViewController as! TweetsViewController
                 tweetsVC.delegate = containerViewController
@@ -43,7 +43,7 @@ class MenuTableViewController: UITableViewController {
                 containerViewController.contentViewController = tweetsNC
             } else if indexPath.row == 1 {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tweetsNC = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+                let tweetsNC = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
                 let tweetsVC = tweetsNC.topViewController as! TweetsViewController
                 tweetsVC.delegate = containerViewController
@@ -54,7 +54,7 @@ class MenuTableViewController: UITableViewController {
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-                let profileNC = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
+                let profileNC = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(profileNC.navigationBar)
                 let profileVC = profileNC.topViewController as! ProfileViewController
                 profileVC.delegate = containerViewController
@@ -62,7 +62,7 @@ class MenuTableViewController: UITableViewController {
                 containerViewController.contentViewController = profileNC
             } else if indexPath.row == 1 {
                 let storyboard = UIStoryboard(name: "Account", bundle: nil)
-                let accountNC = storyboard.instantiateViewControllerWithIdentifier("AccountNavigationController") as! UINavigationController
+                let accountNC = storyboard.instantiateViewController(withIdentifier: "AccountNavigationController") as! UINavigationController
                 Utils.configureDefaultNavigationBar(accountNC.navigationBar)
                 let accountVC = accountNC.topViewController as! AccountViewController
                 accountVC.delegate = containerViewController
@@ -70,7 +70,7 @@ class MenuTableViewController: UITableViewController {
                 containerViewController.contentViewController = accountNC
             }
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }

@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 class Utils {
-    class func configureDefaultNavigationBar(navBar: UINavigationBar) {
-        navBar.translucent = false
+    class func configureDefaultNavigationBar(_ navBar: UINavigationBar) {
+        navBar.isTranslucent = false
         navBar.barTintColor = Color.twitterBlue
-        navBar.tintColor = UIColor.whiteColor()
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navBar.tintColor = UIColor.white
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 }

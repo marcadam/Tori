@@ -25,16 +25,16 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let containerVC = segue.destinationViewController as! ContainerViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let containerVC = segue.destination as! ContainerViewController
 
         let menuStoryboard = UIStoryboard(name: "Menu", bundle: nil)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let menuNC = menuStoryboard.instantiateViewControllerWithIdentifier("MenuNavigationController") as? UINavigationController
+        let menuNC = menuStoryboard.instantiateViewController(withIdentifier: "MenuNavigationController") as? UINavigationController
         let menuTVC = menuNC?.topViewController as! MenuTableViewController
 
-        let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+        let tweetsNC = mainStoryboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
         let tweetsVC = tweetsNC.topViewController as! TweetsViewController
         tweetsVC.delegate = containerVC
@@ -45,12 +45,12 @@ class LoginViewController: UIViewController {
         containerVC.contentViewController = tweetsNC
     }
 
-    @IBAction func onLogin(sender: UIButton) {
+    @IBAction func onLogin(_ sender: UIButton) {
         TwitterClient.sharedInstance.loginWithCompletion() {
             (user: User?, error: NSError?) in
             if user != nil {
                 // perform segue
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
             } else {
                 // handle login error
             }

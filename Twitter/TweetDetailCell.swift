@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TweetDetailCellDelegate: class {
-    func tweetCell(cell: TweetDetailCell, didTapProfileButton button: UIButton)
+    func tweetCell(_ cell: TweetDetailCell, didTapProfileButton button: UIButton)
 }
 
 class TweetDetailCell: UITableViewCell {
@@ -29,7 +29,7 @@ class TweetDetailCell: UITableViewCell {
             }
             tweetTextLabel.text = tweet.text
             if let profileImageURL = tweet.user?.profileImageURL {
-                profileImageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: profileImageURL)!)
+                profileImageButton.setBackgroundImageFor(.normal, with: URL(string: profileImageURL)!)
             }
             createdAtLabel.text = tweet.createdAtStringMedium
         }
@@ -44,13 +44,13 @@ class TweetDetailCell: UITableViewCell {
         profileImageButton.clipsToBounds = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func onProfileImageTap(sender: UIButton) {
+    @IBAction func onProfileImageTap(_ sender: UIButton) {
         delegate?.tweetCell(self, didTapProfileButton: sender)
     }
 

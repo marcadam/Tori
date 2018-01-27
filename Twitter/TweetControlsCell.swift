@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TweetControlsCellDelegate: class {
-    func didUpdateTweet(tweet: Tweet)
+    func didUpdateTweet(_ tweet: Tweet)
 }
 
 class TweetControlsCell: UITableViewCell {
@@ -21,14 +21,14 @@ class TweetControlsCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             if User.currentUser?.userID == tweet.user?.userID {
-                retweetButton.setImage(UIImage(named: "RetweetInactive"), forState: .Normal)
-                retweetButton.enabled = false
+                retweetButton.setImage(UIImage(named: "RetweetInactive"), for: .normal)
+                retweetButton.isEnabled = false
             } else if tweet.retweeted! {
-                retweetButton.setImage(UIImage(named: "RetweetOn"), forState: .Normal)
+                retweetButton.setImage(UIImage(named: "RetweetOn"), for: .normal)
             }
 
             if tweet.favorited! {
-                favoriteButton.setImage(UIImage(named: "FavoriteOn"), forState: .Normal)
+                favoriteButton.setImage(UIImage(named: "FavoriteOn"), for: .normal)
             }
         }
     }
@@ -40,13 +40,13 @@ class TweetControlsCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func onRetweet(sender: UIButton) {
+    @IBAction func onRetweet(_ sender: UIButton) {
         print("onRetweet")
         let params: NSDictionary = ["id": tweet.tweetID!]
         TwitterClient.sharedInstance.retweetStatusWithParams(params) { (tweet, error) -> Void in
@@ -54,7 +54,7 @@ class TweetControlsCell: UITableViewCell {
                 print("Retweet successful.")
                 self.tweet.retweeted = true
                 self.tweet.retweetCount = self.tweet.retweetCount! + 1
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.delegate?.didUpdateTweet(self.tweet)
                 })
             } else {
@@ -63,7 +63,7 @@ class TweetControlsCell: UITableViewCell {
         }
     }
 
-    @IBAction func onFavorite(sender: UIButton) {
+    @IBAction func onFavorite(_ sender: UIButton) {
         print("onFavorite")
         let params: NSDictionary = ["id": tweet.tweetID!]
         TwitterClient.sharedInstance.favoritesCreateWithParams(params) { (tweet, error) -> Void in
@@ -71,7 +71,7 @@ class TweetControlsCell: UITableViewCell {
                 print("Tweet favorited!")
                 self.tweet.favorited = true
                 self.tweet.favoriteCount = self.tweet.favoriteCount! + 1
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.delegate?.didUpdateTweet(self.tweet)
                 })
             } else {

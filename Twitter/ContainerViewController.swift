@@ -28,19 +28,19 @@ class ContainerViewController: UIViewController {
             view.layoutIfNeeded()
 
             if oldContentViewController != nil {
-                oldContentViewController.willMoveToParentViewController(nil)
+                oldContentViewController.willMove(toParentViewController: nil)
                 oldContentViewController.view.removeFromSuperview()
-                oldContentViewController.didMoveToParentViewController(nil)
+                oldContentViewController.didMove(toParentViewController: nil)
             }
 
-            contentViewController.willMoveToParentViewController(self)
+            contentViewController.willMove(toParentViewController: self)
             contentView.addSubview(contentViewController.view)
-            contentViewController.didMoveToParentViewController(self)
+            contentViewController.didMove(toParentViewController: self)
 
-            UIView.animateWithDuration(0.3) { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 self.contentViewLeadingConstraint.constant = 0
                 self.view.layoutIfNeeded()
-            }
+            })
             menuOpen = false
         }
     }
@@ -52,12 +52,12 @@ class ContainerViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let menuStoryboard = UIStoryboard(name: "Menu", bundle: nil)
 
-        let menuNC = menuStoryboard.instantiateViewControllerWithIdentifier("MenuNavigationController") as! UINavigationController
+        let menuNC = menuStoryboard.instantiateViewController(withIdentifier: "MenuNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(menuNC.navigationBar)
         let menuTVC = menuNC.topViewController as! MenuTableViewController
         menuTVC.containerViewController = self
 
-        let tweetsNC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+        let tweetsNC = mainStoryboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         Utils.configureDefaultNavigationBar(tweetsNC.navigationBar)
         let tweetsVC = tweetsNC.topViewController as! TweetsViewController
         tweetsVC.delegate = self
@@ -73,16 +73,16 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onPanGesture(sender: UIPanGestureRecognizer) {
-        let translation = sender.translationInView(view)
-        let velocity = sender.velocityInView(view)
+    @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
 
-        if sender.state == .Began {
+        if sender.state == .began {
             originalContentViewLeadingConstraint = contentViewLeadingConstraint.constant
-        } else if sender.state == .Changed {
+        } else if sender.state == .changed {
             contentViewLeadingConstraint.constant = originalContentViewLeadingConstraint + translation.x
-        } else if sender.state == .Ended {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+        } else if sender.state == .ended {
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 if velocity.x > 0 {
                     self.contentViewLeadingConstraint.constant = self.view.frame.size.width - 50
                     self.menuOpen = true
@@ -97,9 +97,9 @@ class ContainerViewController: UIViewController {
 }
 
 extension ContainerViewController: TweetsViewControllerDelegate, ProfileViewControllerDelegate, AccountViewControllerDelegate {
-    private func toggleMenu() {
+    fileprivate func toggleMenu() {
         originalContentViewLeadingConstraint = contentViewLeadingConstraint.constant
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             if self.menuOpen {
                 self.contentViewLeadingConstraint.constant = 0
                 self.menuOpen = false
@@ -111,15 +111,15 @@ extension ContainerViewController: TweetsViewControllerDelegate, ProfileViewCont
         })
     }
 
-    func tweetView(tweetView: TweetsViewController, didTapMenuButton: UIBarButtonItem) {
+    func tweetView(_ tweetView: TweetsViewController, didTapMenuButton: UIBarButtonItem) {
         toggleMenu()
     }
 
-    func profileView(profileView: ProfileViewController, didTapMenuButton: UIBarButtonItem) {
+    func profileView(_ profileView: ProfileViewController, didTapMenuButton: UIBarButtonItem) {
         toggleMenu()
     }
 
-    func accountView(accountView: AccountViewController, didTapMenuButton: UIBarButtonItem) {
+    func accountView(_ accountView: AccountViewController, didTapMenuButton: UIBarButtonItem) {
         toggleMenu()
     }
 }

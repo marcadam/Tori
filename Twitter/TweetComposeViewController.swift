@@ -8,7 +8,7 @@
 
 import UIKit
 
-let userDidPostTweetNotification = "userDidPostTweetNotification"
+let userDidPostTweetNotification = Notification.Name("userDidPostTweetNotification")
 
 class TweetComposeViewController: UIViewController {
 
@@ -24,9 +24,9 @@ class TweetComposeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(tweetTextDidChange), name: UITextViewTextDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(tweetTextDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
 
-        tweetButton.enabled = false
+        tweetButton.isEnabled = false
         inReplyToLabel.text = nil
 
         if let tweet = tweet {
@@ -50,20 +50,20 @@ class TweetComposeViewController: UIViewController {
         let tweetRemainingCharacterCount = tweetMaximumCharacterCount - tweetCurrentCharacterCount
         charactersRemainingLabel.text = "\(tweetRemainingCharacterCount)"
         if tweetCurrentCharacterCount > 0 {
-            tweetButton.enabled = true
+            tweetButton.isEnabled = true
             if tweetRemainingCharacterCount >= 0 {
-                charactersRemainingLabel.textColor = UIColor.lightGrayColor()
-                tweetButton.enabled = true
+                charactersRemainingLabel.textColor = UIColor.lightGray
+                tweetButton.isEnabled = true
             } else {
-                charactersRemainingLabel.textColor = UIColor.redColor()
-                tweetButton.enabled = false
+                charactersRemainingLabel.textColor = UIColor.red
+                tweetButton.isEnabled = false
             }
         } else {
-            tweetButton.enabled = false
+            tweetButton.isEnabled = false
         }
     }
 
-    @IBAction func onTweet(sender: UIButton) {
+    @IBAction func onTweet(_ sender: UIButton) {
         let params: NSMutableDictionary = ["status": tweetTextView.text]
         if let tweet = tweet {
             if let tweetID = tweet.tweetID {
@@ -72,10 +72,10 @@ class TweetComposeViewController: UIViewController {
         }
         TwitterClient.sharedInstance.updateStatusWithParams(params) { (tweet, error) -> Void in
             if tweet != nil {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    NSNotificationCenter.defaultCenter().postNotificationName(userDidPostTweetNotification, object: nil, userInfo: ["tweet": tweet!])
+                DispatchQueue.main.async(execute: { () -> Void in
+                    NotificationCenter.default.post(name: userDidPostTweetNotification, object: nil, userInfo: ["tweet": tweet!])
                     self.tweetTextView.resignFirstResponder()
-                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
                 })
             } else {
                 print("Error tweeting.")
@@ -83,8 +83,8 @@ class TweetComposeViewController: UIViewController {
         }
     }
 
-    @IBAction func onCancel(sender: UIButton) {
+    @IBAction func onCancel(_ sender: UIButton) {
         tweetTextView.resignFirstResponder()
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

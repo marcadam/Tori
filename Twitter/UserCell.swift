@@ -17,7 +17,7 @@ class UserCell: UITableViewCell {
     var user: User! {
         didSet {
             if let profileImageURL = user.profileImageURL {
-                profileImageView.setImageWithURL(NSURL(string: profileImageURL)!)
+                profileImageView.setImageWith(URL(string: profileImageURL)!)
             }
             nameLabel.text = user.name
             screenNameLabel.text = "@\(user.screenName!)"
@@ -31,7 +31,7 @@ class UserCell: UITableViewCell {
         profileImageView.clipsToBounds = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

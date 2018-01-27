@@ -15,7 +15,7 @@ class Tweet {
     var createdAtString: String?
     var createdAtStringShort: String?
     var createdAtStringMedium: String?
-    var createdAt: NSDate?
+    var createdAt: Date?
     var retweetCount: Int?
     var retweetedStatus: NSDictionary?
     var retweetedTweet: Tweet?
@@ -28,13 +28,13 @@ class Tweet {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-        createdAt = dateFormatter.dateFromString(createdAtString!)
+        createdAt = dateFormatter.date(from: createdAtString!)
         createdAtStringShort = createdAtStringShortFromDate(createdAt!)
-        dateFormatter.dateStyle = .ShortStyle
-        dateFormatter.timeStyle = .ShortStyle
-        createdAtStringMedium = dateFormatter.stringFromDate(createdAt!)
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        createdAtStringMedium = dateFormatter.string(from: createdAt!)
         retweetCount = dictionary["retweet_count"] as? Int
 
         if let retweetedStatus = dictionary["retweeted_status"] as? NSDictionary {
@@ -47,7 +47,7 @@ class Tweet {
         favorited = dictionary["favorited"] as? Bool
     }
 
-    class func tweetsWithArray(array: [NSDictionary]) -> [Tweet] {
+    class func tweetsWithArray(_ array: [NSDictionary]) -> [Tweet] {
         var tweets = [Tweet]()
 
         for dictionary in array {
@@ -57,7 +57,7 @@ class Tweet {
         return tweets
     }
 
-    private func createdAtStringShortFromDate(date: NSDate) -> String? {
+    fileprivate func createdAtStringShortFromDate(_ date: Date) -> String? {
         var createdAtStringShort: String?
         let secondsPerMinute = 60.0
         let secondsPerHour = secondsPerMinute * secondsPerMinute

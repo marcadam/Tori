@@ -16,23 +16,23 @@ class TweetStatsCell: UITableViewCell {
         didSet {
             let tweetStatsText = NSMutableAttributedString()
             let regularAttributes = [
-                NSFontAttributeName: UIFont.systemFontOfSize(12.0),
-                NSForegroundColorAttributeName: UIColor.lightGrayColor()
+                NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
+                NSForegroundColorAttributeName: UIColor.lightGray
             ]
             let boldAttributes = [
-                NSFontAttributeName: UIFont.boldSystemFontOfSize(12.0),
-                NSForegroundColorAttributeName: UIColor.blackColor()
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12.0),
+                NSForegroundColorAttributeName: UIColor.black
             ]
 
             if let retweetCount = tweet.retweetCount{
-                tweetStatsText.appendAttributedString(NSAttributedString(string: "\(retweetCount)", attributes: boldAttributes))
+                tweetStatsText.append(NSAttributedString(string: "\(retweetCount)", attributes: boldAttributes))
                 let retweetText = retweetCount == 1 ? "RETWEET" : "RETWEETS"
-                tweetStatsText.appendAttributedString(NSAttributedString(string: " \(retweetText)    ", attributes: regularAttributes))
+                tweetStatsText.append(NSAttributedString(string: " \(retweetText)    ", attributes: regularAttributes))
             }
             if let favoriteCount = tweet.favoriteCount {
                 let favoriteText = favoriteCount == 1 ? "LIKE" : "LIKES"
-                tweetStatsText.appendAttributedString(NSAttributedString(string: "\(favoriteCount)", attributes: boldAttributes))
-                tweetStatsText.appendAttributedString(NSAttributedString(string: " \(favoriteText)    ", attributes: regularAttributes))
+                tweetStatsText.append(NSAttributedString(string: "\(favoriteCount)", attributes: boldAttributes))
+                tweetStatsText.append(NSAttributedString(string: " \(favoriteText)    ", attributes: regularAttributes))
             }
 
             tweetStatsLabel.attributedText = tweetStatsText
@@ -44,7 +44,7 @@ class TweetStatsCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

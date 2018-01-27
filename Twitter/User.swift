@@ -10,8 +10,8 @@ import Foundation
 
 var _currentUser: User?
 let currentUserKey = "CurrentUserKey"
-let userDidLoginNotification = "userDidLoginNotification"
-let userDidLogoutNotification = "userDidLogoutNotification"
+let userDidLoginNotification = Notification.Name("userDidLoginNotification")
+let userDidLogoutNotification = Notification.Name("userDidLogoutNotification")
 
 class User {
     var userID: Int?
@@ -38,7 +38,7 @@ class User {
         statusesCount = dictionary["statuses_count"] as? Int
     }
 
-    class func usersWithArray(array: [NSDictionary]) -> [User] {
+    class func usersWithArray(_ array: [NSDictionary]) -> [User] {
         var users = [User]()
 
         for dictionary in array {
@@ -52,17 +52,17 @@ class User {
         User.currentUser = nil
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
 
-        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+        NotificationCenter.default.post(name: userDidLogoutNotification, object: nil)
     }
 
     class var currentUser: User? {
         get {
             if _currentUser == nil {
-                let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData
+                let data = UserDefaults.standard.object(forKey: currentUserKey) as? Data
                 if data != nil {
                     var dictionary: NSDictionary?
                     do {
-                        dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? NSDictionary
+                        dictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? NSDictionary
                     } catch {
                         print("Error deserializing user data.")
                     }
@@ -76,18 +76,18 @@ class User {
             _currentUser = user
 
             if _currentUser != nil {
-                var data: NSData?
+                var data: Data?
                 do {
-                    data = try NSJSONSerialization.dataWithJSONObject(user!.dictionary, options: NSJSONWritingOptions())
+                    data = try JSONSerialization.data(withJSONObject: user!.dictionary, options: JSONSerialization.WritingOptions())
                 } catch {
                     print("Error serializing user JSON.")
                 }
 
-                NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
+                UserDefaults.standard.set(data, forKey: currentUserKey)
             } else {
-                NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
+                UserDefaults.standard.set(nil, forKey: currentUserKey)
             }
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.synchronize()
         }
     }
 }
