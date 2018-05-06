@@ -9,13 +9,13 @@
 import UIKit
 import BDBOAuth1Manager
 
-let twitterBaseURL = NSURL(string: "https://api.twitter.com")
+let twitterBaseURL = URL(string: "https://api.twitter.com")
 let twitterConsumerKey = "Yim4xHpLx8LZmjGSv15YjcIdz"
 let twitterConsumerSecret = "JDkcg1q7k8rLS4sMyAtFaIZeDYqax2dWNlWWO36wdqFP1vTfZi"
 
 class TwitterClient: BDBOAuth1SessionManager {
 
-    var loginCompletion: ((user: User?, error: NSError?) -> Void)?
+    var loginCompletion: ((_ user: User?, _ error: Error?) -> Void)?
 
     static let sharedInstance = TwitterClient(
         baseURL: twitterBaseURL,
@@ -23,189 +23,190 @@ class TwitterClient: BDBOAuth1SessionManager {
         consumerSecret: twitterConsumerSecret
     )
 
-    func loginWithCompletion(completion: (user: User?, error: NSError?) -> Void) {
+    func loginWithCompletion(completion: @escaping (_ user: User?, _ error: Error?) -> Void) {
         loginCompletion = completion
 
         // Fetch request token & redirect to autorization page
         requestSerializer.removeAccessToken()
-        fetchRequestTokenWithPath("oauth/request_token",
+        fetchRequestToken(withPath: "oauth/request_token",
             method: "GET",
-            callbackURL: NSURL(string: "codepathtwitter://oauth"),
+            callbackURL: URL(string: "codepathtwitter://oauth"),
             scope: nil,
             success: { (requestToken: BDBOAuth1Credential!) -> Void in
+                guard let token = requestToken.token else { fatalError( "Response token is empty!" ) }
                 // print("Got the request token!")
-                let authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")!
-                UIApplication.sharedApplication().openURL(authURL)
+                let authURL = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(token)")!
+                UIApplication.shared.openURL(authURL)
             },
-            failure: { (error: NSError!) -> Void in
+            failure: { (error: Error!) -> Void in
                 print("Failed to get request token!")
-                self.loginCompletion?(user: nil, error: error)
+                self.loginCompletion?(nil, error)
             }
         )
     }
 
-    func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> Void) {
-        GET("1.1/statuses/home_timeline.json",
+    func homeTimelineWithParams(params: NSDictionary?, completion: @escaping (_ tweets: [Tweet]?, _ error: Error?) -> Void) {
+        get("1.1/statuses/home_timeline.json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
                 // print("\(response)")
                 let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-                completion(tweets: tweets, error: nil)
+                completion(tweets, nil)
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error getting home timeline.")
-                completion(tweets: nil, error: error)
+                completion(nil, error)
             }
         )
     }
 
-    func userTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> Void) {
-        GET("1.1/statuses/user_timeline.json",
+    func userTimelineWithParams(params: NSDictionary?, completion: @escaping (_ tweets: [Tweet]?, _ error: Error?) -> Void) {
+        get("1.1/statuses/user_timeline.json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
                 // print("\(response)")
                 let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-                completion(tweets: tweets, error: nil)
+                completion(tweets, nil)
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error getting user timeline.")
-                completion(tweets: nil, error: error)
+                completion(nil, error)
             }
         )
     }
 
-    func mentionsWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> Void) {
-        GET("1.1/statuses/mentions_timeline.json",
+    func mentionsWithParams(params: NSDictionary?, completion: @escaping (_ tweets: [Tweet]?, _ error: Error?) -> Void) {
+        get("1.1/statuses/mentions_timeline.json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
                 // print("\(response)")
                 let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-                completion(tweets: tweets, error: nil)
+                completion(tweets, nil)
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error getting mentions timeline.")
-                completion(tweets: nil, error: error)
+                completion(nil, error)
             }
         )
     }
 
-    func updateStatusWithParams(params: NSDictionary, completion: (tweet: Tweet?, error: NSError?) -> Void) {
-        POST("1.1/statuses/update.json",
+    func updateStatusWithParams(params: NSDictionary, completion: @escaping (_ tweet: Tweet?, _ error: Error?) -> Void) {
+        post("1.1/statuses/update.json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                completion(tweet: Tweet.init(dictionary: response as! NSDictionary), error: nil)
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
+                completion(Tweet.init(dictionary: response as! NSDictionary), nil)
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error updating status.")
             }
         )
     }
 
-    func retweetStatusWithParams(params: NSDictionary, completion: (tweet: Tweet?, error: NSError?) -> Void) {
-        POST("1.1/statuses/retweet/\(params["id"]!).json",
+    func retweetStatusWithParams(params: NSDictionary, completion: @escaping (_ tweet: Tweet?, _ error: Error?) -> Void) {
+        post("1.1/statuses/retweet/\(params["id"]!).json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                completion(tweet: Tweet.init(dictionary: response as! NSDictionary), error: nil)
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
+                completion(Tweet.init(dictionary: response as! NSDictionary), nil)
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error retweeting status.")
             }
         )
     }
 
-    func favoritesCreateWithParams(params: NSDictionary, completion: (tweet: Tweet?, error: NSError?) -> Void) {
-        POST("1.1/favorites/create.json",
+    func favoritesCreateWithParams(params: NSDictionary, completion: @escaping (_ tweet: Tweet?, _ error: Error?) -> Void) {
+        post("1.1/favorites/create.json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
                 // print("\(response)")
-                completion(tweet: Tweet.init(dictionary: response as! NSDictionary), error: nil)
+                completion(Tweet.init(dictionary: response as! NSDictionary), nil)
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error favoriting tweet.")
             }
         )
     }
 
-    func favoritesDestroyWithParams(params: NSDictionary, completion: (tweet: Tweet?, error: NSError?) -> Void) {
-        POST("1.1/favorites/destroy.json",
+    func favoritesDestroyWithParams(params: NSDictionary, completion: (_ tweet: Tweet?, _ error: Error?) -> Void) {
+        post("1.1/favorites/destroy.json",
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
                 // print("\(response)")
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error unfavoriting tweet.")
             }
         )
     }
 
-    func followingWithParams(params: NSDictionary?, completion: (users: [User]?, error: NSError?) -> Void) {
-        getUsersWithParams(params, forEndpoint: "1.1/friends/ids.json", completion: completion)
+    func followingWithParams(params: NSDictionary?, completion: @escaping (_ users: [User]?, _ error: Error?) -> Void) {
+        getUsersWithParams(params: params, forEndpoint: "1.1/friends/ids.json", completion: completion)
     }
 
-    func followersWithParams(params: NSDictionary?, completion: (users: [User]?, error: NSError?) -> Void) {
-        getUsersWithParams(params, forEndpoint: "1.1/followers/ids.json", completion: completion)
+    func followersWithParams(params: NSDictionary?, completion: @escaping (_ users: [User]?, _ error: Error?) -> Void) {
+        getUsersWithParams(params: params, forEndpoint: "1.1/followers/ids.json", completion: completion)
     }
 
-    private func getUsersWithParams(params: NSDictionary?, forEndpoint endpoint: String, completion: (users: [User]?, error: NSError?) -> Void) {
-        GET(endpoint,
+    private func getUsersWithParams(params: NSDictionary?, forEndpoint endpoint: String, completion: @escaping (_ users: [User]?, _ error: Error?) -> Void) {
+        get(endpoint,
             parameters: params,
             progress: nil,
-            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
                 var userIDs = (response as! NSDictionary)["ids"] as! [Int]
                 userIDs = userIDs.count <= 20 ? userIDs : Array(userIDs[0..<19])
-                let topIDsString = userIDs.map({"\($0)"}).joinWithSeparator(",")
-                self.GET("1.1/users/lookup.json",
+                let topIDsString = userIDs.map({"\($0)"}).joined(separator: ",")
+                self.get("1.1/users/lookup.json",
                     parameters: ["user_id": topIDsString],
                     progress: nil,
-                    success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                    success: { (task: URLSessionDataTask, response: Any?) -> Void in
                         let users = User.usersWithArray(response as! [NSDictionary])
-                        completion(users: users, error: nil)
+                        completion(users, nil)
                     },
-                    failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                    failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                         print("Error getting users.")
                     }
                 )
             },
-            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                 print("Error getting following IDs.")
-                completion(users: nil, error: error)
+                completion(nil, error)
             }
         )
     }
 
-    func openURL(url: NSURL) {
-        fetchAccessTokenWithPath("oauth/access_token",
+    func openURL(url: URL) {
+        fetchAccessToken(withPath: "oauth/access_token",
             method: "POST",
             requestToken: BDBOAuth1Credential(queryString: url.query),
             success: { (accessToken: BDBOAuth1Credential!) -> Void in
-                TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
+                TwitterClient.sharedInstance?.requestSerializer.saveAccessToken(accessToken)
 
                 // Get current user info
-                TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json",
+                TwitterClient.sharedInstance?.get("1.1/account/verify_credentials.json",
                     parameters: nil,
                     progress: nil,
-                    success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                    success: { (task: URLSessionDataTask, response: Any?) -> Void in
                         // print("\(response)")
                         let user = User(dictionary: response as! NSDictionary)
                         User.currentUser = user
-                        self.loginCompletion?(user: user, error: nil)
+                        self.loginCompletion?(user, nil)
                     },
-                    failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                    failure: { (task: URLSessionDataTask?, error: Error) -> Void in
                         print("Error getting current user.")
-                        self.loginCompletion?(user: nil, error: error)
+                        self.loginCompletion?(nil, error)
                     }
                 )
             },
-            failure: { (error: NSError!) -> Void in
+            failure: { (error: Error!) -> Void in
                 print("Failed to receive access token!")
-                self.loginCompletion?(user: nil, error: error)
+                self.loginCompletion?(nil, error)
             }
         )
     }

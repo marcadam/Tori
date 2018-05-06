@@ -70,7 +70,7 @@ class TweetComposeViewController: UIViewController {
                 params["in_reply_to_status_id"] = tweetID
             }
         }
-        TwitterClient.sharedInstance.updateStatusWithParams(params) { (tweet, error) -> Void in
+        TwitterClient.sharedInstance?.updateStatusWithParams(params: params) { (tweet, error) -> Void in
             if tweet != nil {
                 DispatchQueue.main.async(execute: { () -> Void in
                     NotificationCenter.default.post(name: userDidPostTweetNotification, object: nil, userInfo: ["tweet": tweet!])

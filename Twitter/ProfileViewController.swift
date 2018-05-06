@@ -134,7 +134,7 @@ class ProfileViewController: UIViewController {
     func fetchTweets() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let params: NSDictionary = ["user_id": (user?.userID)!]
-        TwitterClient.sharedInstance.userTimelineWithParams(params) { (tweets, error) -> Void in
+        TwitterClient.sharedInstance?.userTimelineWithParams(params: params) { (tweets, error) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tableDisplayMode = .tweets
             self.tweets = tweets
@@ -144,7 +144,7 @@ class ProfileViewController: UIViewController {
 
     func refreshTweets(_ refreshControll: UIRefreshControl) {
         let params: NSDictionary = ["user_id": (user?.userID)!]
-        TwitterClient.sharedInstance.userTimelineWithParams(params) { (tweets, error) -> Void in
+        TwitterClient.sharedInstance?.userTimelineWithParams(params: params) { (tweets, error) -> Void in
             self.tableDisplayMode = .tweets
             self.tweets = tweets
             self.tableView.reloadData()
@@ -168,7 +168,7 @@ class ProfileViewController: UIViewController {
     @IBAction func onFollowingTap(_ sender: UITapGestureRecognizer) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let params: NSDictionary = ["user_id": (user?.userID)!]
-        TwitterClient.sharedInstance.followingWithParams(params) { (users, error) -> Void in
+        TwitterClient.sharedInstance?.followingWithParams(params: params) { (users, error) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tableDisplayMode = .following
             self.users = users
@@ -179,7 +179,7 @@ class ProfileViewController: UIViewController {
     @IBAction func onFollowersTap(_ sender: UITapGestureRecognizer) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let params: NSDictionary = ["user_id": (user?.userID)!]
-        TwitterClient.sharedInstance.followersWithParams(params) { (users, error) -> Void in
+        TwitterClient.sharedInstance?.followersWithParams(params: params) { (users, error) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tableDisplayMode = .followers
             self.users = users

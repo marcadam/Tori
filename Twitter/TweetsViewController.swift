@@ -57,7 +57,7 @@ class TweetsViewController: UIViewController {
 
     func fetchTweets() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> Void in
+        TwitterClient.sharedInstance?.homeTimelineWithParams(params: nil) { (tweets, error) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tweets = tweets
             self.tableView.reloadData()
@@ -65,7 +65,7 @@ class TweetsViewController: UIViewController {
     }
 
     func refreshTweets(_ refreshControll: UIRefreshControl) {
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> Void in
+        TwitterClient.sharedInstance?.homeTimelineWithParams(params: nil) { (tweets, error) -> Void in
             self.tweets = tweets
             self.tableView.reloadData()
             refreshControll.endRefreshing()
@@ -74,7 +74,7 @@ class TweetsViewController: UIViewController {
 
     func fetchMentions() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        TwitterClient.sharedInstance.mentionsWithParams(nil) { (tweets, error) -> Void in
+        TwitterClient.sharedInstance?.mentionsWithParams(params: nil) { (tweets, error) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tweets = tweets
             self.tableView.reloadData()
@@ -82,7 +82,7 @@ class TweetsViewController: UIViewController {
     }
 
     func refreshMentions(_ refreshControll: UIRefreshControl) {
-        TwitterClient.sharedInstance.mentionsWithParams(nil) { (tweets, error) -> Void in
+        TwitterClient.sharedInstance?.mentionsWithParams(params: nil) { (tweets, error) -> Void in
             self.tweets = tweets
             self.tableView.reloadData()
             refreshControll.endRefreshing()
