@@ -46,7 +46,7 @@ class TweetComposeViewController: UIViewController {
     }
 
     func tweetTextDidChange() {
-        let tweetCurrentCharacterCount = tweetTextView.text.characters.count
+        let tweetCurrentCharacterCount = tweetTextView.text.count
         let tweetRemainingCharacterCount = tweetMaximumCharacterCount - tweetCurrentCharacterCount
         charactersRemainingLabel.text = "\(tweetRemainingCharacterCount)"
         if tweetCurrentCharacterCount > 0 {
