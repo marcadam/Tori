@@ -14,6 +14,6 @@ class Utils {
         navBar.isTranslucent = false
         navBar.barTintColor = Color.twitterBlue
         navBar.tintColor = UIColor.white
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
 }

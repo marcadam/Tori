@@ -73,12 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         TwitterClient.sharedInstance?.openURL(url: url)
         return true
     }
 
-    func userDidLogout() {
+    @objc func userDidLogout() {
         let vc = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         UIView.transition(with: window!,
             duration: 0.75,
