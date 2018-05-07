@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func userDidLogout() {
+    @objc func userDidLogout() {
         let vc = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         UIView.transition(with: window!,
             duration: 0.75,

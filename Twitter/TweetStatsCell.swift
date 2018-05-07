@@ -16,12 +16,12 @@ class TweetStatsCell: UITableViewCell {
         didSet {
             let tweetStatsText = NSMutableAttributedString()
             let regularAttributes = [
-                NSFontAttributeName: UIFont.systemFont(ofSize: 12.0),
-                NSForegroundColorAttributeName: UIColor.lightGray
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0),
+                NSAttributedStringKey.foregroundColor: UIColor.lightGray
             ]
             let boldAttributes = [
-                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12.0),
-                NSForegroundColorAttributeName: UIColor.black
+                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 12.0),
+                NSAttributedStringKey.foregroundColor: UIColor.black
             ]
 
             if let retweetCount = tweet.retweetCount{

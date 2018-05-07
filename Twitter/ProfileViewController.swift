@@ -142,7 +142,7 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    func refreshTweets(_ refreshControll: UIRefreshControl) {
+    @objc func refreshTweets(_ refreshControll: UIRefreshControl) {
         let params: NSDictionary = ["user_id": (user?.userID)!]
         TwitterClient.sharedInstance?.userTimelineWithParams(params: params) { (tweets, error) -> Void in
             self.tableDisplayMode = .tweets

@@ -64,7 +64,7 @@ class TweetsViewController: UIViewController {
         }
     }
 
-    func refreshTweets(_ refreshControll: UIRefreshControl) {
+    @objc func refreshTweets(_ refreshControll: UIRefreshControl) {
         TwitterClient.sharedInstance?.homeTimelineWithParams(params: nil) { (tweets, error) -> Void in
             self.tweets = tweets
             self.tableView.reloadData()
@@ -81,7 +81,7 @@ class TweetsViewController: UIViewController {
         }
     }
 
-    func refreshMentions(_ refreshControll: UIRefreshControl) {
+    @objc func refreshMentions(_ refreshControll: UIRefreshControl) {
         TwitterClient.sharedInstance?.mentionsWithParams(params: nil) { (tweets, error) -> Void in
             self.tweets = tweets
             self.tableView.reloadData()
@@ -89,7 +89,7 @@ class TweetsViewController: UIViewController {
         }
     }
 
-    func insertNewTweet(_ notification: Notification) {
+    @objc func insertNewTweet(_ notification: Notification) {
         if let newTweet = notification.userInfo!["tweet"] as? Tweet {
             tweets?.insert(newTweet, at: 0)
             tableView.reloadData()

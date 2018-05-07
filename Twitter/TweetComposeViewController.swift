@@ -45,7 +45,7 @@ class TweetComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func tweetTextDidChange() {
+    @objc func tweetTextDidChange() {
         let tweetCurrentCharacterCount = tweetTextView.text.count
         let tweetRemainingCharacterCount = tweetMaximumCharacterCount - tweetCurrentCharacterCount
         charactersRemainingLabel.text = "\(tweetRemainingCharacterCount)"
